@@ -1,0 +1,25 @@
+============================================================
+ANALISIS 7: MONTHLY TREND ANALYSIS
+============================================================
+
+[2021_10_Oktober] Memproses... OK 12,123,709 pts, 398,142 users
+
+[2021_11_November] Memproses... OK 119,072,431 pts, 1,226,198 users
+
+[2021_12_Desember] Memproses... OK 45,950,349 pts, 1,288,665 users
+
+[2022_01_Januari] Memproses... OK 22,488,993 pts, 924,855 users
+
+[2022_02_Februari] Memproses... OK 39,601,777 pts, 956,296 users
+
+[2022_03_Maret] Memproses... OK 26,837,642 pts, 457,977 users
+
+[2022_04_April] Memproses... OK 1,048,571 pts, 121,764 users
+
+[2022_05_Mei] Memproses... OK 31,075,618 pts, 1,271,675 users
+
+[2022_06_Juni] Memproses... OK 12,246,261 pts, 403,758 users
+
+============================================================
+ANALISIS 7 SELESAI! (75.5 detik)
+============================================================

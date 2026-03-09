@@ -1,0 +1,25 @@
+============================================================
+ANALISIS 10: MOBILITY REGULARITY & SPATIAL ENTROPY
+============================================================
+
+[2021_10_Oktober] Memproses... OK median Hn=0.222 | routine=55.8%
+
+[2021_11_November] Memproses... OK median Hn=0.465 | routine=43.8%
+
+[2021_12_Desember] Memproses... OK median Hn=0.581 | routine=33.2%
+
+[2022_01_Januari] Memproses... OK median Hn=0.573 | routine=32.9%
+
+[2022_02_Februari] Memproses... OK median Hn=0.489 | routine=40.9%
+
+[2022_03_Maret] Memproses... OK median Hn=0.000 | routine=65.6%
+
+[2022_04_April] Memproses... OK median Hn=0.405 | routine=46.9%
+
+[2022_05_Mei] Memproses... OK median Hn=0.257 | routine=53.9%
+
+[2022_06_Juni] Memproses... OK median Hn=0.229 | routine=55.1%
+
+============================================================
+ANALISIS 10 SELESAI! (37.9 detik)
+============================================================

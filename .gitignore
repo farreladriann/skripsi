@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Big data files
+hasil_rg_data.csv
+
+# Virtual environments
+.venv
+DataGPS*
+DataMPD*
+.duckdb_tmp
+
+analisis6/hasil_rg_data.csv

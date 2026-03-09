@@ -1,0 +1,25 @@
+============================================================
+ANALISIS 4: ORIGIN-DESTINATION MOBILITY FLOW
+============================================================
+
+[2021_10_Oktober] Memproses... OK 27,010 trips | Top: 5_4->6_4 (1504)
+
+[2021_11_November] Memproses... OK 180,740 trips | Top: 7_4->6_4 (11825)
+
+[2021_12_Desember] Memproses... OK 195,484 trips | Top: 6_4->7_4 (9793)
+
+[2022_01_Januari] Memproses... OK 119,882 trips | Top: 7_4->6_4 (7353)
+
+[2022_02_Februari] Memproses... OK 135,196 trips | Top: 7_4->6_4 (9950)
+
+[2022_03_Maret] Memproses... OK 51,589 trips | Top: 7_4->6_4 (7433)
+
+[2022_04_April] Memproses... OK 11,773 trips | Top: 7_4->6_4 (1219)
+
+[2022_05_Mei] Memproses... OK 125,232 trips | Top: 7_4->6_4 (9318)
+
+[2022_06_Juni] Memproses... OK 39,227 trips | Top: 6_4->7_4 (3230)
+
+============================================================
+ANALISIS 4 SELESAI! (65.1 detik)
+============================================================
