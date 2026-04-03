@@ -28,9 +28,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # ==========================================
 LOG_DIR = os.path.join(BASE_DIR, "log")
 os.makedirs(LOG_DIR, exist_ok=True)
-log_file = os.path.join(LOG_DIR, "convert_to_parquet.log")
+log_file = os.path.join(LOG_DIR, "convert_to_parquet_1.log")
 
-logger = logging.getLogger("convert_to_parquet")
+logger = logging.getLogger("convert_to_parquet_1")
 logger.setLevel(logging.INFO)
 fh = logging.FileHandler(log_file, mode="w", encoding="utf-8")
 fh.setFormatter(
@@ -57,7 +57,7 @@ def duckdb_low_mem():
 # 1. KONVERSI DataGPS (per bulan, gabung parts)
 # ==========================================
 GPS_SRC = os.path.join(BASE_DIR, "DataGPS")
-GPS_DST = os.path.join(BASE_DIR, "DataGPS_parquet")
+GPS_DST = os.path.join(BASE_DIR, "DataGPS_parquet_1")
 os.makedirs(GPS_DST, exist_ok=True)
 
 # Mapping: nama output → list file CSV sumber
@@ -81,8 +81,6 @@ GPS_SCHEMA = pa.schema(
         ("timestamp", pa.int64()),
     ]
 )
-
-CHUNK_SIZE = 500_000
 
 
 def main():
@@ -111,11 +109,10 @@ def main():
         print(f"\n  [{month_name}] Mengkonversi {len(csv_list)} file CSV...", flush=True)
         logger.info(f"[{month_name}] Mulai konversi {len(csv_list)} file CSV")
 
-        writer = None
-        total_rows = 0
         month_csv_bytes = 0
-        rows_dropped = 0
+        frames = []
 
+        # ── Baca semua part sekaligus, tanpa chunk ──────────────────────
         for csv_file in csv_list:
             fpath = os.path.join(GPS_SRC, csv_file)
             if not os.path.exists(fpath):
@@ -125,75 +122,74 @@ def main():
 
             month_csv_bytes += os.path.getsize(fpath)
 
-            for chunk in pd.read_csv(
+            df = pd.read_csv(
                 fpath,
-                chunksize=CHUNK_SIZE,
                 dtype={"maid": str, "latitude": str, "longitude": str, "timestamp": str},
-            ):
-                # Konversi tipe data
-                chunk["latitude"] = pd.to_numeric(
-                    chunk["latitude"], errors="coerce"
-                ).astype("float32")
-                chunk["longitude"] = pd.to_numeric(
-                    chunk["longitude"], errors="coerce"
-                ).astype("float32")
-                chunk["timestamp"] = pd.to_numeric(
-                    chunk["timestamp"], errors="coerce"
-                ).astype("Int64")
-                before_drop = len(chunk)
-                chunk = chunk.dropna(subset=["maid", "latitude", "longitude", "timestamp"])
-                rows_dropped += before_drop - len(chunk)
-                chunk["timestamp"] = chunk["timestamp"].astype("int64")
+            )
+            frames.append(df)
 
-                table = pa.Table.from_pandas(chunk, schema=GPS_SCHEMA, preserve_index=False)
+        if not frames:
+            logger.warning(f"[{month_name}] Tidak ada file yang berhasil dibaca, dilewati.")
+            continue
 
-                if writer is None:
-                    writer = pq.ParquetWriter(out_path, GPS_SCHEMA, compression="zstd")
+        # ── Gabung semua part jadi satu DataFrame ───────────────────────
+        df_all = pd.concat(frames, ignore_index=True)
+        del frames
 
-                writer.write_table(table)
-                total_rows += len(chunk)
+        # ── Konversi tipe data ───────────────────────────────────────────
+        df_all["latitude"] = pd.to_numeric(df_all["latitude"], errors="coerce").astype("float32")
+        df_all["longitude"] = pd.to_numeric(df_all["longitude"], errors="coerce").astype("float32")
+        df_all["timestamp"] = pd.to_numeric(df_all["timestamp"], errors="coerce").astype("Int64")
 
-        if writer is not None:
-            writer.close()
-
-        if rows_dropped > 0:
+        before_drop = len(df_all)
+        df_all = df_all.dropna(subset=["maid", "latitude", "longitude", "timestamp"])
+        rows_dropped = before_drop - len(df_all)
+        if rows_dropped:
             logger.info(
-                f"[{month_name}] Dropped {rows_dropped:,} baris dengan NaN (latitude/longitude/timestamp)"
+                f"[{month_name}] Dropped {rows_dropped:,} baris dengan NaN "
+                f"(latitude/longitude/timestamp)"
             )
 
-        # Sorting berdasarkan maid lalu timestamp (DuckDB out-of-core, hemat RAM)
-        if os.path.exists(out_path):
-            logger.info(
-                f"[{month_name}] Sorting berdasarkan maid, timestamp (out-of-core)..."
-            )
-            print("    Sorting berdasarkan maid, timestamp...", flush=True)
-            t_sort = time.time()
-            tmp_sorted = out_path + ".sorting.tmp"
-            con = duckdb_low_mem()
-            con.execute(
-                """
-                COPY (SELECT * FROM read_parquet($1) ORDER BY maid, timestamp)
-                TO $2 (FORMAT PARQUET, COMPRESSION ZSTD)
+        df_all["timestamp"] = df_all["timestamp"].astype("int64")
+        total_rows = len(df_all)
+
+        # ── Tulis Parquet sekaligus ──────────────────────────────────────
+        table = pa.Table.from_pandas(df_all, schema=GPS_SCHEMA, preserve_index=False)
+        del df_all
+        pq.write_table(table, out_path, compression="zstd")
+        del table
+
+        # ── Sorting berdasarkan maid lalu timestamp (DuckDB out-of-core) ─
+        logger.info(f"[{month_name}] Sorting berdasarkan maid, timestamp (out-of-core)...")
+        print("    Sorting berdasarkan maid, timestamp...", flush=True)
+        t_sort = time.time()
+        tmp_sorted = out_path + ".sorting.tmp"
+        con = duckdb_low_mem()
+        con.execute(
+            """
+            COPY (SELECT * FROM read_parquet($1) ORDER BY maid, timestamp)
+            TO $2 (FORMAT PARQUET, COMPRESSION ZSTD)
             """,
-                [out_path, tmp_sorted],
-            )
-            con.close()
-            os.replace(tmp_sorted, out_path)
-            logger.info(f"[{month_name}] Sorting selesai dalam {time.time() - t_sort:.1f}s")
+            [out_path, tmp_sorted],
+        )
+        con.close()
+        os.replace(tmp_sorted, out_path)
+        logger.info(f"[{month_name}] Sorting selesai dalam {time.time() - t_sort:.1f}s")
 
-        pq_size = os.path.getsize(out_path) if os.path.exists(out_path) else 0
+        pq_size = os.path.getsize(out_path)
         total_csv_bytes += month_csv_bytes
         total_pq_bytes += pq_size
 
         elapsed = time.time() - t0
         ratio = month_csv_bytes / pq_size if pq_size > 0 else 0
         print(
-            f"    → {total_rows:,} baris | CSV: {month_csv_bytes / 1e6:.0f} MB → Parquet: {pq_size / 1e6:.0f} MB ({ratio:.1f}x kompresi) | {elapsed:.1f}s"
+            f"    → {total_rows:,} baris | CSV: {month_csv_bytes / 1e6:.0f} MB "
+            f"→ Parquet: {pq_size / 1e6:.0f} MB ({ratio:.1f}x kompresi) | {elapsed:.1f}s"
         )
         logger.info(
-            f"[{month_name}] {total_rows:,} baris | CSV: {month_csv_bytes / 1e6:.0f} MB → Parquet: {pq_size / 1e6:.0f} MB ({ratio:.1f}x) | {elapsed:.1f}s"
+            f"[{month_name}] {total_rows:,} baris | CSV: {month_csv_bytes / 1e6:.0f} MB "
+            f"→ Parquet: {pq_size / 1e6:.0f} MB ({ratio:.1f}x) | {elapsed:.1f}s"
         )
-
 
     # ==========================================
     # 2. KONVERSI PeopleGraph
@@ -213,28 +209,15 @@ def main():
         pg_csv_size = os.path.getsize(PG_SRC)
 
         pg_cols = [
-            "maid",
-            "gender",
-            "col3",
-            "col4",
-            "country",
-            "geohash",
-            "income",
-            "province",
-            "kabupaten",
-            "kecamatan",
-            "kelurahan",
+            "maid", "gender", "col3", "col4", "country", "geohash",
+            "income", "province", "kabupaten", "kecamatan", "kelurahan",
         ]
 
-        # PeopleGraph tidak punya header
         df_pg = pd.read_csv(
             PG_SRC, header=None, names=pg_cols, quotechar='"', na_values=["\\N"], dtype=str
         )
-
-        # Hapus kolom kosong / tidak berguna
         df_pg = df_pg.drop(columns=["col3", "col4"], errors="ignore")
 
-        # Hapus baris duplikat
         before = len(df_pg)
         df_pg = df_pg.drop_duplicates()
         after = len(df_pg)
@@ -244,49 +227,25 @@ def main():
                 f"[PeopleGraph] Hapus {before - after:,} baris duplikat ({before:,} → {after:,})"
             )
 
-        # Konversi ke kategorikal (hemat memori untuk kolom low-cardinality)
-        for col in [
-            "gender",
-            "country",
-            "income",
-            "province",
-            "kabupaten",
-            "kecamatan",
-            "kelurahan",
-        ]:
+        for col in ["gender", "country", "income", "province", "kabupaten", "kecamatan", "kelurahan"]:
             if col in df_pg.columns:
                 df_pg[col] = df_pg[col].astype("category")
 
-        # Simpan ke Parquet (tanpa sort dulu)
         table = pa.Table.from_pandas(df_pg, preserve_index=False)
         n_rows_pg = len(df_pg)
-        del df_pg  # bebaskan RAM sebelum sort
+        del df_pg
         pq.write_table(
-            table,
-            pg_out,
-            compression="zstd",
-            use_dictionary=[
-                "gender",
-                "country",
-                "income",
-                "province",
-                "kabupaten",
-                "kecamatan",
-                "kelurahan",
-            ],
+            table, pg_out, compression="zstd",
+            use_dictionary=["gender", "country", "income", "province", "kabupaten", "kecamatan", "kelurahan"],
         )
         del table
 
-        # Sorting berdasarkan maid (DuckDB out-of-core, hemat RAM)
         logger.info("[PeopleGraph] Sorting berdasarkan maid (out-of-core)...")
         print("    Sorting berdasarkan maid...", flush=True)
         pg_tmp = pg_out + ".sorting.tmp"
         con = duckdb_low_mem()
         con.execute(
-            """
-            COPY (SELECT * FROM read_parquet($1) ORDER BY maid)
-            TO $2 (FORMAT PARQUET, COMPRESSION ZSTD)
-        """,
+            "COPY (SELECT * FROM read_parquet($1) ORDER BY maid) TO $2 (FORMAT PARQUET, COMPRESSION ZSTD)",
             [pg_out, pg_tmp],
         )
         con.close()
@@ -300,12 +259,13 @@ def main():
         elapsed = time.time() - t0
         ratio = pg_csv_size / pg_pq_size if pg_pq_size > 0 else 0
         print(
-            f"    → {n_rows_pg:,} baris | CSV: {pg_csv_size / 1e6:.0f} MB → Parquet: {pg_pq_size / 1e6:.0f} MB ({ratio:.1f}x kompresi) | {elapsed:.1f}s"
+            f"    → {n_rows_pg:,} baris | CSV: {pg_csv_size / 1e6:.0f} MB "
+            f"→ Parquet: {pg_pq_size / 1e6:.0f} MB ({ratio:.1f}x kompresi) | {elapsed:.1f}s"
         )
         logger.info(
-            f"[PeopleGraph] {n_rows_pg:,} baris | CSV: {pg_csv_size / 1e6:.0f} MB → Parquet: {pg_pq_size / 1e6:.0f} MB ({ratio:.1f}x) | {elapsed:.1f}s"
+            f"[PeopleGraph] {n_rows_pg:,} baris | CSV: {pg_csv_size / 1e6:.0f} MB "
+            f"→ Parquet: {pg_pq_size / 1e6:.0f} MB ({ratio:.1f}x) | {elapsed:.1f}s"
         )
-
 
     # ==========================================
     # 3. KONVERSI DataMPD
@@ -327,7 +287,6 @@ def main():
         mpd_csv_size = os.path.getsize(MPD_SRC)
 
         df_mpd = pd.read_csv(MPD_SRC, na_values=["\\N"])
-
         table = pa.Table.from_pandas(df_mpd, preserve_index=False)
         pq.write_table(table, mpd_out, compression="zstd")
 
@@ -338,12 +297,13 @@ def main():
         elapsed = time.time() - t0
         ratio = mpd_csv_size / mpd_pq_size if mpd_pq_size > 0 else 0
         print(
-            f"    → {len(df_mpd):,} baris | CSV: {mpd_csv_size / 1e6:.1f} MB → Parquet: {mpd_pq_size / 1e6:.1f} MB ({ratio:.1f}x kompresi) | {elapsed:.1f}s"
+            f"    → {len(df_mpd):,} baris | CSV: {mpd_csv_size / 1e6:.1f} MB "
+            f"→ Parquet: {mpd_pq_size / 1e6:.1f} MB ({ratio:.1f}x kompresi) | {elapsed:.1f}s"
         )
         logger.info(
-            f"[DataMPD] {len(df_mpd):,} baris | CSV: {mpd_csv_size / 1e6:.1f} MB → Parquet: {mpd_pq_size / 1e6:.1f} MB ({ratio:.1f}x) | {elapsed:.1f}s"
+            f"[DataMPD] {len(df_mpd):,} baris | CSV: {mpd_csv_size / 1e6:.1f} MB "
+            f"→ Parquet: {mpd_pq_size / 1e6:.1f} MB ({ratio:.1f}x) | {elapsed:.1f}s"
         )
-
 
     # ==========================================
     # RINGKASAN
@@ -351,12 +311,13 @@ def main():
     print("\n" + "=" * 60)
     print("RINGKASAN KONVERSI")
     print("=" * 60)
-    print(f"  Total CSV  : {total_csv_bytes / 1e9:.2f} GB")
+    print(f"  Total CSV    : {total_csv_bytes / 1e9:.2f} GB")
     print(f"  Total Parquet: {total_pq_bytes / 1e9:.2f} GB")
     if total_pq_bytes > 0:
         print(f"  Rasio kompresi: {total_csv_bytes / total_pq_bytes:.1f}x lebih kecil")
         print(
-            f"  Hemat: {(total_csv_bytes - total_pq_bytes) / 1e9:.2f} GB ({(1 - total_pq_bytes / total_csv_bytes) * 100:.0f}%)"
+            f"  Hemat: {(total_csv_bytes - total_pq_bytes) / 1e9:.2f} GB "
+            f"({(1 - total_pq_bytes / total_csv_bytes) * 100:.0f}%)"
         )
     print("=" * 60)
     print("\nFile Parquet tersedia di:")

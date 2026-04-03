@@ -1,0 +1,114 @@
+# Critical Framework: Big Data GPS
+
+---
+
+## Fakta-Fakta Penting
+
+1. Data GPS diambil dari telekomunikasi data — hanya orang yang aktif menggunakan data seluler yang tertrack.
+2. Tidak semua orang memiliki smartphone, atau mengaktifkan layanan lokasi secara konsisten.
+3. Kualitas sinyal GPS bervariasi tergantung kondisi geografis (gedung tinggi, area terpencil, dalam ruangan).
+4. Satu MAID (Mobile Advertising ID) tidak selalu merepresentasikan satu individu — bisa dibagi, direset, atau dipalsukan.
+5. MAID bisa berubah sewaktu-waktu (user reset advertising ID), sehingga kontinuitas tracking satu individu bisa terputus.
+6. Frekuensi ping GPS per individu tidak seragam — ada yang sangat sering ter-log, ada yang jarang.
+7. Data GPS berasal dari berbagai aplikasi yang meminta izin lokasi, sehingga coverage populasi sangat bergantung pada adopsi aplikasi tertentu.
+8. Terdapat potensi bias demografis — segmen populasi tertentu (lansia, anak-anak, kelompok ekonomi rendah) mungkin underrepresented.
+9. Timestamp pada data tidak selalu mencerminkan waktu kejadian nyata — bisa ada delay antara pengambilan sinyal dan pencatatan ke server.
+10. Akurasi koordinat GPS berbeda-beda tergantung perangkat (GPS chip quality) dan metode positioning (GPS satelit vs. cell tower triangulation vs. WiFi).
+
+---
+
+## Pertanyaan Kritis
+
+### Representativitas & Generalisasi
+- Apakah data GPS bisa menggeneralisasi aktivitas manusia di suatu rentang lokasi dan suatu rentang waktu?
+- Apakah distribusi pengguna yang tertrack mencerminkan distribusi populasi sesungguhnya, atau ada systematic bias?
+- Seberapa besar proporsi populasi nyata yang tertangkap dalam data ini? Apakah sample size cukup untuk inferensi spasial?
+- Apakah ada wilayah geografis tertentu yang secara struktural underrepresented karena keterbatasan jaringan seluler?
+- Apakah kesimpulan dari data ini hanya valid untuk segmen populasi "pengguna smartphone aktif", bukan populasi umum?
+
+### Reliabilitas & Akurasi
+- Apakah koordinat GPS yang tercatat benar-benar merepresentasikan lokasi fisik orang tersebut, atau ada error signifikan?
+- Seberapa besar radius error yang dapat ditoleransi untuk analisis yang dimaksud?
+- Apakah timestamp sudah tersinkronisasi dengan benar terhadap timezone lokal, atau ada offset?
+- Apakah metode positioning yang digunakan konsisten di seluruh dataset, atau campuran GPS/WiFi/cell tower dengan akurasi berbeda-beda?
+
+### Anomali & Kualitas Data
+- Apakah data reliable? Bisa saja tidak tepat karena masalah kalibrasi lokasi dan waktu dengan kenyataan.
+- Apakah ada individu yang tercatat berada di dua lokasi berbeda dalam waktu yang bersamaan (*location teleportation*)?
+- Apakah ada perpindahan dengan kecepatan yang tidak mungkin secara fisik (*impossible speed*)?
+- Apakah ada titik koordinat yang jatuh di luar batas geografis yang masuk akal (laut, luar negeri, koordinat 0,0)?
+- Apakah ada *GPS drift* — lokasi yang bergerak sedikit-sedikit padahal orangnya diam (noise saat stationary)?
+- Apakah ada *ping burst* — ribuan record dalam hitungan detik dari satu MAID yang sama, yang mengindikasikan bug atau bot?
+- Apakah kolom datum (lat, lon, timestamp, MAID) ada yang kosong atau null?
+- Apakah ada timestamp yang tidak monoton — record berikutnya memiliki waktu lebih awal dari record sebelumnya untuk MAID yang sama?
+- Apakah ada koordinat yang terlalu presisi secara mencurigakan (terlalu banyak desimal seragam), yang bisa menandakan data sintetis atau interpolasi?
+
+### Duplikasi
+- Jika datanya duplicate, apakah data duplicate tersebut baik untuk analisis?
+- Apa yang menyebabkan duplikasi — apakah duplikasi di level record identik, atau duplikasi MAID dengan koordinat berbeda?
+- Apakah deduplication perlu dilakukan sebelum atau sesudah aggregasi?
+
+### Dominasi Individu
+- Jika seseorang mendominasi data, apakah baik untuk analisis?
+- Apakah ada MAID tertentu yang menghasilkan jumlah record jauh di atas rata-rata, dan apa implikasinya terhadap distribusi analisis?
+- Apakah dominasi tersebut mencerminkan perilaku nyata (orang yang sangat mobile) atau artefak teknis (aplikasi yang sangat agresif melakukan polling lokasi)?
+
+### Identitas & Privasi
+- Apakah satu MAID benar-benar merepresentasikan satu individu yang konsisten sepanjang periode data?
+- Jika MAID di-reset di tengah periode observasi, bagaimana dampaknya terhadap analisis trajektori individu?
+- Apakah ada kemungkinan satu perangkat digunakan bergantian oleh beberapa orang (shared device)?
+
+### Temporal
+- Apakah frekuensi sampling GPS seragam sepanjang waktu, atau ada periode tertentu dengan coverage yang jauh lebih tipis?
+- Apakah ada bias jam tertentu dalam pengumpulan data — misalnya lebih banyak record di siang hari karena penggunaan aplikasi lebih tinggi?
+- Apakah rentang waktu data cukup panjang untuk menangkap pola perilaku yang representatif (musiman, mingguan, dsb)?
+
+## Kategorisasi Tambahan
+
+---
+
+### Semantik & Konteks
+Data GPS hanya memberikan *di mana* dan *kapan*, tidak pernah *mengapa* dan *apa*.
+- Apakah koordinat yang tercatat bisa dibedakan antara orang yang sedang *bergerak* vs *diam* di titik tersebut?
+- Apakah keberadaan seseorang di suatu titik bisa langsung diinterpretasikan sebagai "aktivitas" tertentu (belanja, bekerja, transit), atau itu hanya asumsi?
+- Apakah ada risiko *semantic gap* — koordinat yang sama bisa merepresentasikan aktivitas yang sama sekali berbeda tergantung individunya?
+- Bagaimana membedakan seseorang yang *tinggal* di suatu area vs sekadar *lewat*?
+
+---
+
+### Granularitas & Resolusi
+- Apakah resolusi spasial data (akurasi meter) cukup untuk skala analisis yang dimaksud — apakah analisis butuh presisi level gedung, atau cukup level kelurahan?
+- Apakah resolusi temporal (frekuensi ping) cukup untuk menangkap pola mobilitas yang ingin dianalisis?
+- Apakah ada *undersampling* pada individu tertentu yang membuat trajektorinya terlalu jarang untuk dianalisis secara bermakna?
+- Apakah agregasi ke unit spasial tertentu (grid, kelurahan, kecamatan) mempengaruhi kesimpulan — ini berkaitan dengan *Modifiable Areal Unit Problem* (MAUP)?
+
+---
+
+### Batas Inferensi & Kausalitas
+- Apa yang secara valid bisa disimpulkan dari data GPS, dan apa yang tidak?
+- Apakah pola mobilitas yang terobservasi bisa diklaim sebagai representasi perilaku, atau hanya representasi *rekaman perangkat*?
+- Apakah ada risiko *ecological fallacy* — kesimpulan tentang individu yang ditarik dari pola agregat?
+- Apakah korelasi spasial yang ditemukan bisa diklaim kausal, atau hanya asosiasional?
+
+---
+
+### Konteks Eksternal & Gangguan Struktural
+- Apakah selama rentang waktu data terjadi event besar yang mengubah pola mobilitas secara struktural (pandemi, bencana alam, libur nasional panjang, demonstrasi, kebijakan PPKM)?
+- Apakah perubahan pola yang terobservasi mencerminkan perilaku normal, atau artefak dari kondisi luar biasa?
+- Apakah ada perubahan infrastruktur (jalan baru, penutupan area) selama periode data yang mempengaruhi pola pergerakan?
+
+---
+
+### Pipeline & Instrumen Pengumpulan
+- Apakah metode dan sistem pengumpulan data konsisten sepanjang seluruh periode observasi, atau ada perubahan teknis di tengah jalan?
+- Apakah ada provider atau sumber data yang berbeda-beda dalam satu dataset, dengan standar akurasi yang tidak seragam?
+- Apakah ada *data gaps* — periode waktu atau wilayah tertentu di mana pengumpulan data terganggu atau berhenti sama sekali?
+- Apakah definisi operasional field (lat, lon, timestamp, MAID) konsisten di seluruh sumber data?
+
+---
+
+### Etika & Legalitas
+- Apakah data ini dikumpulkan dengan consent yang sah dari individu yang tertrack?
+- Apakah penggunaan data ini untuk analisis tertentu sesuai dengan *terms of use* sumber data dan regulasi yang berlaku (UU PDP di Indonesia)?
+- Apakah anonimisasi yang ada cukup kuat, atau ada risiko *re-identification* dari kombinasi koordinat dan timestamp?
+- Apakah ada kelompok populasi yang secara tidak proporsional terdampak oleh potensi kebocoran data ini?

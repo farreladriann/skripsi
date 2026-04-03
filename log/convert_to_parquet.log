@@ -1,54 +1,10 @@
-2026-03-07 04:19:52 [INFO] Mulai konversi CSV → Parquet
-2026-03-07 04:19:52 [INFO] [2021_10_Oktober] Mulai konversi 1 file CSV
-2026-03-07 04:20:20 [INFO] [2021_10_Oktober] Dropped 24 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:20:20 [INFO] [2021_10_Oktober] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:20:23 [INFO] [2021_10_Oktober] Sorting selesai dalam 2.6s
-2026-03-07 04:20:23 [INFO] [2021_10_Oktober] 12,123,709 baris | CSV: 932 MB → Parquet: 44 MB (21.1x) | 31.1s
-2026-03-07 04:20:23 [INFO] [2021_11_November] Mulai konversi 7 file CSV
-2026-03-07 04:24:40 [INFO] [2021_11_November] Dropped 35 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:24:40 [INFO] [2021_11_November] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:26:45 [INFO] [2021_11_November] Sorting selesai dalam 124.5s
-2026-03-07 04:26:45 [INFO] [2021_11_November] 119,072,431 baris | CSV: 8943 MB → Parquet: 302 MB (29.6x) | 381.6s
-2026-03-07 04:26:45 [INFO] [2021_12_Desember] Mulai konversi 3 file CSV
-2026-03-07 04:28:25 [INFO] [2021_12_Desember] Dropped 32 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:28:25 [INFO] [2021_12_Desember] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:28:37 [INFO] [2021_12_Desember] Sorting selesai dalam 12.0s
-2026-03-07 04:28:37 [INFO] [2021_12_Desember] 45,950,349 baris | CSV: 3353 MB → Parquet: 166 MB (20.2x) | 112.1s
-2026-03-07 04:28:37 [INFO] [2022_01_Januari] Mulai konversi 2 file CSV
-2026-03-07 04:29:28 [INFO] [2022_01_Januari] Dropped 20 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:29:28 [INFO] [2022_01_Januari] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:29:33 [INFO] [2022_01_Januari] Sorting selesai dalam 5.1s
-2026-03-07 04:29:33 [INFO] [2022_01_Januari] 22,488,993 baris | CSV: 1724 MB → Parquet: 130 MB (13.3x) | 56.0s
-2026-03-07 04:29:33 [INFO] [2022_02_Februari] Mulai konversi 2 file CSV
-2026-03-07 04:31:00 [INFO] [2022_02_Februari] Dropped 30 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:31:00 [INFO] [2022_02_Februari] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:31:12 [INFO] [2022_02_Februari] Sorting selesai dalam 12.1s
-2026-03-07 04:31:12 [INFO] [2022_02_Februari] 39,601,777 baris | CSV: 2977 MB → Parquet: 189 MB (15.7x) | 99.1s
-2026-03-07 04:31:12 [INFO] [2022_03_Maret] Mulai konversi 2 file CSV
-2026-03-07 04:32:09 [INFO] [2022_03_Maret] Dropped 30 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:32:09 [INFO] [2022_03_Maret] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:32:16 [INFO] [2022_03_Maret] Sorting selesai dalam 6.6s
-2026-03-07 04:32:16 [INFO] [2022_03_Maret] 26,837,642 baris | CSV: 2004 MB → Parquet: 72 MB (27.9x) | 63.9s
-2026-03-07 04:32:16 [INFO] [2022_04_April] Mulai konversi 1 file CSV
-2026-03-07 04:32:18 [INFO] [2022_04_April] Dropped 4 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:32:18 [INFO] [2022_04_April] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:32:19 [INFO] [2022_04_April] Sorting selesai dalam 0.4s
-2026-03-07 04:32:19 [INFO] [2022_04_April] 1,048,571 baris | CSV: 80 MB → Parquet: 9 MB (9.2x) | 2.9s
-2026-03-07 04:32:19 [INFO] [2022_05_Mei] Mulai konversi 2 file CSV
-2026-03-07 04:33:26 [INFO] [2022_05_Mei] Dropped 11 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:33:26 [INFO] [2022_05_Mei] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:33:38 [INFO] [2022_05_Mei] Sorting selesai dalam 11.7s
-2026-03-07 04:33:38 [INFO] [2022_05_Mei] 31,075,618 baris | CSV: 2263 MB → Parquet: 175 MB (12.9x) | 79.6s
-2026-03-07 04:33:38 [INFO] [2022_06_Juni] Mulai konversi 1 file CSV
-2026-03-07 04:34:05 [INFO] [2022_06_Juni] Dropped 27 baris dengan NaN (latitude/longitude/timestamp)
-2026-03-07 04:34:05 [INFO] [2022_06_Juni] Sorting berdasarkan maid, timestamp (out-of-core)...
-2026-03-07 04:34:08 [INFO] [2022_06_Juni] Sorting selesai dalam 2.6s
-2026-03-07 04:34:08 [INFO] [2022_06_Juni] 12,246,261 baris | CSV: 920 MB → Parquet: 62 MB (14.9x) | 29.6s
-2026-03-07 04:34:08 [INFO] [PeopleGraph] Mulai konversi
-2026-03-07 04:34:12 [INFO] [PeopleGraph] Hapus 589,064 baris duplikat (1,834,289 → 1,245,225)
-2026-03-07 04:34:13 [INFO] [PeopleGraph] Sorting berdasarkan maid (out-of-core)...
-2026-03-07 04:34:14 [INFO] [PeopleGraph] Sorting selesai
-2026-03-07 04:34:14 [INFO] [PeopleGraph] 1,245,225 baris | CSV: 251 MB → Parquet: 31 MB (8.1x) | 6.0s
-2026-03-07 04:34:14 [INFO] [SKIP] mpd_sample_small.parquet sudah ada
-2026-03-07 04:34:14 [INFO] Ringkasan: CSV 23.45 GB → Parquet 1.18 GB
-2026-03-07 04:34:14 [INFO] Selesai!
+2026-04-03 16:00:13 [INFO] Mulai konversi CSV → Parquet
+2026-04-03 16:00:13 [INFO] [2022_06_Juni] Mulai konversi 1 file CSV
+2026-04-03 16:00:42 [INFO] [2022_06_Juni] Dropped 27 baris dengan NaN (latitude/longitude/timestamp)
+2026-04-03 16:00:42 [INFO] [2022_06_Juni] Sorting berdasarkan maid, timestamp (out-of-core)...
+2026-04-03 16:00:45 [INFO] [2022_06_Juni] Sorting selesai dalam 3.1s
+2026-04-03 16:00:45 [INFO] [2022_06_Juni] 12,246,261 baris | CSV: 920 MB → Parquet: 74 MB (12.5x) | 32.6s
+2026-04-03 16:00:45 [INFO] [SKIP] people_graph.parquet sudah ada
+2026-04-03 16:00:45 [INFO] [SKIP] mpd_sample_small.parquet sudah ada
+2026-04-03 16:00:45 [INFO] Ringkasan: CSV 1.17 GB → Parquet 0.10 GB
+2026-04-03 16:00:45 [INFO] Selesai!

@@ -1,0 +1,7 @@
+2026-04-03 15:14:00 [INFO] Mulai konversi CSV → Parquet
+2026-04-03 15:14:00 [INFO] [2021_10_Oktober] Mulai konversi 1 file CSV
+2026-04-03 15:14:30 [INFO] [2021_10_Oktober] Dropped 24 baris dengan NaN (latitude/longitude/timestamp)
+2026-04-03 15:14:32 [INFO] [2021_10_Oktober] Sorting berdasarkan maid, timestamp (out-of-core)...
+2026-04-03 15:14:35 [INFO] [2021_10_Oktober] Sorting selesai dalam 3.0s
+2026-04-03 15:14:35 [INFO] [2021_10_Oktober] 12,123,709 baris | CSV: 932 MB → Parquet: 44 MB (21.1x) | 35.2s
+2026-04-03 15:14:35 [INFO] [2021_11_November] Mulai konversi 7 file CSV
