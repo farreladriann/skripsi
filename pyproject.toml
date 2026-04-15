@@ -9,6 +9,7 @@ dependencies = [
     "contextily>=1.7.0",
     "duckdb>=1.4.4",
     "fastparquet>=2026.3.0",
+    "fiona>=1.10.1",
     "folium>=0.20.0",
     "geographiclib>=2.1",
     "geopandas>=1.1.2",
@@ -38,4 +39,5 @@ dependencies = [
     "streamlit-folium>=0.24.0",
     "thrift>=0.22.0",
     "tqdm>=4.67.3",
+    "trackintel>=1.4.2",
 ]
