@@ -15,5 +15,6 @@ DataGPS*
 DataMPD*
 .duckdb_tmp
 cache
+plots
 
 analisis6/hasil_rg_data.csv
