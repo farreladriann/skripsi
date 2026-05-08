@@ -16,5 +16,9 @@ DataMPD*
 .duckdb_tmp
 cache
 plots
+*checkpoints*
+.env
+data/
+.ruff_cache
+scratch/
 
-analisis6/hasil_rg_data.csv

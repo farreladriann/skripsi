@@ -1407,6 +1407,22 @@ wheels = [
 ]
 
 [[package]]
+name = "mapclassify"
+version = "2.10.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "networkx" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "scikit-learn" },
+    { name = "scipy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/05/7e/767ae65d2652f720213fd6571c5a945b81352895b78b32f77b27d53af139/mapclassify-2.10.0.tar.gz", hash = "sha256:0d6736a08c0b1e10e6197224ef512951514204706514244bd01aea49fd1442b3", size = 6172445, upload-time = "2025-07-11T21:37:48.844Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a7/5e/19fb53bd69379498c47bc234ca4d2851cfbca333d6d6929b10251916da25/mapclassify-2.10.0-py3-none-any.whl", hash = "sha256:dc39d6d924d546cdf2573bd587a7770e1a6ded3cb98272d6f0144319038566c5", size = 882230, upload-time = "2025-07-11T21:37:47.401Z" },
+]
+
+[[package]]
 name = "markdown-it-py"
 version = "4.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1569,6 +1585,20 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/9d/55/d01f0c4b45ade6536c51170b9043db8b2ec6ddf4a35c7ea3f5f559ac935b/mistune-3.2.0.tar.gz", hash = "sha256:708487c8a8cdd99c9d90eb3ed4c3ed961246ff78ac82f03418f5183ab70e398a", size = 95467, upload-time = "2025-12-23T11:36:34.994Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9b/f7/4a5e785ec9fbd65146a27b6b70b6cdc161a66f2024e4b04ac06a67f5578b/mistune-3.2.0-py3-none-any.whl", hash = "sha256:febdc629a3c78616b94393c6580551e0e34cc289987ec6c35ed3f4be42d0eee1", size = 53598, upload-time = "2025-12-23T11:36:33.211Z" },
+]
+
+[[package]]
+name = "movingpandas"
+version = "0.22.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "geopandas" },
+    { name = "geopy" },
+    { name = "matplotlib" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/af/d6/bb91026332e1e81d63197cbb99cbbd1516d8857012136e7119825f4bb9e7/movingpandas-0.22.4.tar.gz", hash = "sha256:2c4bb6f45f32ccd787d8a05397d5746f9d9207bf07b8cbfc36d49fc17e0824be", size = 76001, upload-time = "2025-07-16T18:16:01.269Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7f/e7/1e901ddc2dc493e7cc7dcf45c67488491d8273993ed4cd0c1f28749e2c83/movingpandas-0.22.4-py3-none-any.whl", hash = "sha256:95a7d3fb06655128641dab54d16519281f16f27c3143f666d1c21dcede70b144", size = 82346, upload-time = "2025-07-16T18:15:59.943Z" },
 ]
 
 [[package]]
@@ -2778,7 +2808,9 @@ dependencies = [
     { name = "jupyter" },
     { name = "jupytext" },
     { name = "leuvenmapmatching" },
+    { name = "mapclassify" },
     { name = "matplotlib" },
+    { name = "movingpandas" },
     { name = "numpy" },
     { name = "osmnx" },
     { name = "pandas" },
@@ -2787,6 +2819,7 @@ dependencies = [
     { name = "powerlaw" },
     { name = "pyarrow" },
     { name = "pytz" },
+    { name = "pyyaml" },
     { name = "rich" },
     { name = "rtree" },
     { name = "scikit-learn" },
@@ -2817,7 +2850,9 @@ requires-dist = [
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "jupytext", specifier = ">=1.19.1" },
     { name = "leuvenmapmatching", specifier = ">=1.1.4" },
+    { name = "mapclassify", specifier = ">=2.10.0" },
     { name = "matplotlib", specifier = ">=3.10.8" },
+    { name = "movingpandas", specifier = ">=0.22.4" },
     { name = "numpy", specifier = ">=2.4.2" },
     { name = "osmnx", specifier = ">=2.1.0" },
     { name = "pandas", specifier = ">=3.0.1" },
@@ -2826,6 +2861,7 @@ requires-dist = [
     { name = "powerlaw", specifier = ">=2.0.0" },
     { name = "pyarrow", specifier = ">=23.0.1" },
     { name = "pytz", specifier = ">=2024.1" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
     { name = "rich", specifier = ">=14.3.3" },
     { name = "rtree", specifier = ">=1.4.1" },
     { name = "scikit-learn", specifier = ">=1.8.0" },
