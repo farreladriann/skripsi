@@ -1,5 +1,6 @@
 import polars as pl
 import numpy as np
+import matplotlib.pyplot as plt
 from pathlib import Path
 from src.rru.utils import haversine_m
 
@@ -51,7 +52,45 @@ def report_bilocation_prevalence(per_key: pl.DataFrame, n_total_rows: int) -> No
               f"p95={np.percentile(spread, 95):.1f}  "
               f"p99={np.percentile(spread, 99):.1f}  "
               f"max={spread.max():.1f}")
+
+def plot_bilocation_spread(bilocation_df: pl.DataFrame, start_threshold: float = 0.1, max_threshold: float = 10.0, step: float = 0.1):
+    """
+    Menampilkan grafik jumlah keseluruhan ping (n_pings) yang event bilocation-nya
+    memiliki sebaran (spread_m) di bawah atau sama dengan threshold tertentu.
+    """
+    thresholds = np.arange(start_threshold, max_threshold + step, step)
+    counts = []
+    
+    for th in thresholds:
+        # Filter ping yang berada dalam interval (th - step, th] (non-kumulatif)
+        lower_bound = round(th - step, 5)
+        count = bilocation_df.filter(
+            (pl.col("spread_m") > lower_bound) & (pl.col("spread_m") <= th)
+        )["n_pings"].sum()
+        counts.append(count if count is not None else 0)
         
+    plt.figure(figsize=(10, 6))
+    plt.bar(thresholds, counts, width=step*0.8, color='#d62728', alpha=0.7)
+    
+    plt.title('Distribusi Jumlah Ping Bilocation per Interval Spread (m)')
+    plt.xlabel('Spread Interval (m)')
+    plt.ylabel('Jumlah Ping (Total n_pings)')
+    plt.grid(True, linestyle='--', alpha=0.7)
+    
+    # Atur ticks X agar rapi
+    step_ticks = max(1.0, max_threshold // 10)
+    plt.xlim(left=max(0, start_threshold - step))
+    
+    # Supaya tick di x axis lebih rapi 
+    # (misal kalau start=0.1, tick kita pakai bulat saja kecuali sangat kecil)
+    ticks_range = np.arange(round(start_threshold), max_threshold + step_ticks, step_ticks)
+    if len(ticks_range) == 0 or ticks_range[0] > start_threshold:
+        ticks_range = np.insert(ticks_range, 0, start_threshold)
+    plt.xticks(ticks_range)
+    
+    plt.tight_layout()
+    plt.show()
+
 def main():
     df_candidates_lazy = pl.scan_parquet(OUTPUT_CANDIDATES)
     df_candidates = df_candidates_lazy.collect()
@@ -61,6 +100,9 @@ def main():
         per_key.with_columns(pl.lit(0.0).alias("spread_m")).update(bilocation, on=["maid", "timestamp"]),
         n_total_rows=df_candidates.height,
     )
+    
+    # Menampilkan plot
+    plot_bilocation_spread(bilocation, start_threshold=5.0, max_threshold=20.0, step=0.2)
 
 if __name__ == "__main__":
     main()
