@@ -22,3 +22,7 @@ data/
 .ruff_cache
 scratch/
 
+# Local literature/source PDFs and extracted full text
+references/**/*.pdf
+previous-thesis/*.pdf
+previous-thesis/_extracted_text/
