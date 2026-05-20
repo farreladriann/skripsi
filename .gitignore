@@ -60,3 +60,7 @@ previous-thesis/_extracted_text/
 *.synctex.gz
 *.toc
 
+# Local literature/source PDFs and extracted full text
+references/**/*.pdf
+previous-thesis/*.pdf
+previous-thesis/_extracted_text/
