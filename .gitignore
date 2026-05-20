@@ -5,20 +5,56 @@ build/
 dist/
 wheels/
 *.egg-info
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
 
-# Big data files
+# OS/editor temporary files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Notebook/runtime temporary files
+.ipynb_checkpoints/
+*checkpoints*
+
+# Secrets and local environments
+.env
+.venv/
+
+# Big/local data files and caches
 hasil_rg_data.csv
-
-# Virtual environments
-.venv
 DataGPS*
 DataMPD*
-.duckdb_tmp
-cache
-plots
-*checkpoints*
-.env
+.duckdb_tmp/
+cache/
+plots/
 data/
-.ruff_cache
 scratch/
+references/*.pdf
+references/**/*.pdf
+
+# Local literature/source PDFs and extracted full text
+previous-thesis/*.pdf
+previous-thesis/_extracted_text/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glo
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
 
