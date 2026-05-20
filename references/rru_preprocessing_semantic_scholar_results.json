@@ -1,0 +1,478 @@
+[
+  {
+    "paperId": "098ac71a89d3cce946d072e74d657e0c7d75139d",
+    "externalIds": {
+      "MAG": "2148566104",
+      "DOI": "10.1017/S0373463311000051",
+      "CorpusId": 56090219
+    },
+    "publicationVenue": {
+      "id": "d63965d5-03ca-4968-adb3-9983dd856a3f",
+      "name": "Journal of navigation",
+      "type": "journal",
+      "alternate_names": [
+        "Journal of Navigation",
+        "J navig",
+        "J Navig"
+      ],
+      "issn": "0373-4633",
+      "url": "https://www.cambridge.org/core/journals/journal-of-navigation",
+      "alternate_urls": [
+        "http://journals.cambridge.org/action/displayJournal?jid=NAV",
+        "http://journals.cambridge.org/NAV"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/098ac71a89d3cce946d072e74d657e0c7d75139d",
+    "title": "Positional Accuracy of Assisted GPS Data from High-Sensitivity GPS-enabled Mobile Phones",
+    "venue": "Journal of navigation",
+    "year": 2011,
+    "citationCount": 327,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1017/S0373463311000051?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1017/S0373463311000051, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": null,
+    "authors": [
+      {
+        "authorId": "2232068",
+        "name": "P. Zandbergen"
+      },
+      {
+        "authorId": "2213136",
+        "name": "Sean J. Barbeau"
+      }
+    ],
+    "abstract": null,
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "5ad49c4da7660ebfd97a60e3f941460da7655d31",
+    "externalIds": {
+      "DOI": "10.3390/environsciproc2023028023",
+      "CorpusId": 267114196
+    },
+    "publicationVenue": null,
+    "url": "https://www.semanticscholar.org/paper/5ad49c4da7660ebfd97a60e3f941460da7655d31",
+    "title": "Performance of Assisted-Global Navigation Satellite System from Network Mobile to Precise Positioning on Smartphones",
+    "venue": "IV Conference on Geomatics Engineering",
+    "year": 2024,
+    "citationCount": 0,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.mdpi.com/2673-4931/28/1/23/pdf?version=1705461672",
+      "status": "HYBRID",
+      "license": "CCBY",
+      "disclaimer": "Notice: Paper or abstract available at https://api.unpaywall.org/v2/10.3390/environsciproc2023028023?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.3390/environsciproc2023028023, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": null,
+    "publicationTypes": [
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2280533011",
+        "name": "Mónica Zabala Haro"
+      },
+      {
+        "authorId": "2373857482",
+        "name": "Ángel Martín"
+      },
+      {
+        "authorId": "9760332",
+        "name": "A. Anquela"
+      },
+      {
+        "authorId": "2324245585",
+        "name": "M. Jiménez"
+      }
+    ],
+    "abstract": ": Indoor navigation is the most challenging environment regarding precise positioning service for a smartphone’s physical quality limitations and interferences for high buildings, trees and multipath fading in the GNSS signal received. A GPS by itself cannot offer a solution; the A-GNSS from a network mobile provided through telecommunication infrastructure provides information that is useful to counteract these issues. A smartphone has full connectivity to the mobile network 24/7 and has access to the GNSS database when required, and the assisted information is sent over an Internet Protocol (IP) and processed by the GNSS chip, increasing the accuracy, TTFF, and availability of data even in harsh environments. The outdoor, light indoor, and urban canyon scenarios are experienced when driving in some places in the city, and they are recorded with Geo++ and processed with RTKlib using a single frequency in a standalone and multi-constellation double-frequency smartphone, Xiaomi Mi 8, with A-GNSS. The results show good accuracy in the SPS for over 10 (m) and in assisted positioning over 50 (m); the TTFF in assisted positioning is always 5 (s), and in the SPS, it reaches 20 (s). Finally, during the trajectory, only the assisted positioning can compute the position; this is because of the data availability from a mobile network.",
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "80ad467ea7a4d5b27894b781e3cdab8739150f8f",
+    "externalIds": {
+      "DBLP": "journals/suscom/ChenDWLZ19",
+      "MAG": "2967444835",
+      "DOI": "10.1016/J.SUSCOM.2019.07.004",
+      "CorpusId": 201902752
+    },
+    "publicationVenue": {
+      "id": "e1b18316-e0d4-4006-aa13-129890a757fc",
+      "name": "Sustainable Computing: Informatics and Systems",
+      "type": "journal",
+      "alternate_names": [
+        "Sustain Comput Informatics Syst"
+      ],
+      "issn": "2210-5379",
+      "url": "http://www.journals.elsevier.com/sustainable-computing"
+    },
+    "url": "https://www.semanticscholar.org/paper/80ad467ea7a4d5b27894b781e3cdab8739150f8f",
+    "title": "An efficient urban localization method based on speed humps",
+    "venue": "Sustainable Computing: Informatics and Systems",
+    "year": 2019,
+    "citationCount": 6,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://www.sciencedirect.com/science/article/am/pii/S2210537918303597",
+      "status": "BRONZE",
+      "license": "publisher-specific-oa",
+      "disclaimer": "Notice: Paper or abstract available at https://api.unpaywall.org/v2/10.1016/J.SUSCOM.2019.07.004?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1016/J.SUSCOM.2019.07.004, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "48771879",
+        "name": "Qiuxia Chen"
+      },
+      {
+        "authorId": "2056669561",
+        "name": "Dongdong Ding"
+      },
+      {
+        "authorId": "2108600682",
+        "name": "Xu Wang"
+      },
+      {
+        "authorId": "2148770609",
+        "name": "A. Liu"
+      },
+      {
+        "authorId": "2146413453",
+        "name": "Jianfeng Zhao"
+      }
+    ],
+    "abstract": "Abstract Outdoor localization is of great importance for driving navigation, attracting many research efforts in past decades. Prevailing GPS achieves meter-level localization accuracy under general outdoor conditions. Yet, GPS service performs poorly in urban canyons where skyscrapers block GPS signals and drain mobile phone battery quickly within few hours. In this work, we exploit common city facilities, i.e., speed humps, as an indicator for vehicle location. The key insight is that when the vehicle passes through the speed bump, it experiences significant fluctuations, causing larger acceleration in the vertical direction. On this basis, we design a localization scheme that utilizes the accelerator equipped on modern smart phones to track sequence of speed bumps, which is further transferred into sequence of moving directions of the vehicle, and adopt effective road mapping technology to derive real-time location. As we have concerned, it is the first attempt to exploit the spatiotemporal characteristics generated by the speed humps to recover the trajectory of the travelling route and infer the current position. Experimental results in typical outdoor environment (campus) demonstrate a comparable performance with GPS method, yet achieve lower energy consumption.",
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "fd395d1c321736226e92285cf9d5c84d0cfc7b03",
+    "externalIds": {
+      "DOI": "10.55529/ijitc.44.47.58",
+      "CorpusId": 271346411
+    },
+    "publicationVenue": null,
+    "url": "https://www.semanticscholar.org/paper/fd395d1c321736226e92285cf9d5c84d0cfc7b03",
+    "title": "Applications of Lidar Technology in Urban Geophysical Surveys",
+    "venue": "June-July 2024",
+    "year": 2024,
+    "citationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://api.unpaywall.org/v2/10.55529/ijitc.44.47.58?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.55529/ijitc.44.47.58, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": null,
+    "publicationTypes": [
+      "JournalArticle",
+      "Review"
+    ],
+    "authors": [
+      {
+        "authorId": "2309032080",
+        "name": "Collins O. Molua"
+      },
+      {
+        "authorId": "2311781487",
+        "name": "J. O. Ataman"
+      }
+    ],
+    "abstract": "This research examines the utilization of mobile LiDAR technology for comprehensive urban geophysical surveys, with a specific emphasis on monitoring infrastructure and urban planning. The study challenge focuses on the requirement for precise and detailed geographical data to assist in making informed urban development and management decisions. The approach utilized a transportable LiDAR device with a laser pulse frequency of 200,000 pulses per second at 1,200 meters. Data collection employed precise GPS and IMU for positional and orientation accuracy, respectively. Statistical analysis included noise filtering and classification metrics to evaluate data quality. Results from the study demonstrated the significant capabilities of LiDAR technology: the survey captured over 10.000 points per square meter with a point accuracy of 0.150 meters. Noise filtering processes retained an average of 85% of data points, with ground classification achieving accuracies above 95%. Statistical tools included standard deviation calculations for elevation models, revealing mean elevations ranging from 13.750 to 19.400 meters across surveyed areas. In addition, LiDAR technology could identify structural deformations of up to 0.200 meters in metropolitan buildings. The study highlights the efficacy of LiDAR in offering accurate and extensive geospatial data for urban planning and infrastructure management. This research adds to the current understanding by showing how LiDAR may be used to improve decision-making and increase the ability of cities to withstand and recover from challenges.",
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "dcff8908f4b9f1c2b28c424b927d73f198bb64e8",
+    "externalIds": {
+      "DOI": "10.25195/ijci.v51i2.616",
+      "CorpusId": 281367867
+    },
+    "publicationVenue": {
+      "id": "40d6d72b-fb7c-4fa0-98c0-2f72f340fed4",
+      "name": "Iraqi Journal for Computers and Informatics",
+      "type": "journal",
+      "alternate_names": [
+        "Iraqi J Comput Informatics"
+      ],
+      "issn": "2313-190X",
+      "url": "http://www.uoitc.edu.iq/ijci1/index.html",
+      "alternate_urls": [
+        "http://ijci.uoitc.edu.iq/"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/dcff8908f4b9f1c2b28c424b927d73f198bb64e8",
+    "title": "Assist Blind People in Road Crossing by Integrating a Smart System into Wearable Devices and Vehicle Applications",
+    "venue": "Iraqi Journal for Computers and Informatics",
+    "year": 2025,
+    "citationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://api.unpaywall.org/v2/10.25195/ijci.v51i2.616?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.25195/ijci.v51i2.616, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": null,
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2300501879",
+        "name": "A. Al-Chalabi"
+      }
+    ],
+    "abstract": "The ability to navigate safely is a critical issue for people with visual impairments, especially in urban cities where traffic flow is a constant danger. While traditional tools such as white canes and guide dogs provide some assistance, they are often limited in detecting fast-moving hazards (such as a vehicle) and lack integration with modern technologies. The goal of this research paper is to create and test a prototype of a smart system based on the Internet of Things (IoT) that will help blind individuals become more aware of their surroundings and be able to get around on their own. There are two primary pieces to the system: a smartwatch that one can wear and a mobile web-based application. The smartwatch is built on the NodeMCU ESP8266 module and has a GPS module, a buzzer, and an LED indication. All of them are built into a comfortable design that can be worn on the wrist. The system keeps an eye on where the blind person is and gets alerts through a real-time Firebase database. The web program runs on the driver's phone, tracks the car's location, figures out how close it is to the blind user, and sends warnings when the predicted arrival time drops below two minutes. We did field experiments at different speeds (10 km/h, 20 km/h, and 50 km/h) across a distance of 2 kilometers. The results demonstrated a high response accuracy exceeding 99.6%, stable GPS accuracy ranging between 96% and 98%, and an average alert response time of less than 1.5 seconds. These results confirm the system's ability to provide immediate alerts and improve the safety of the blind. By combining real-time cloud services, geolocation, and alerts, this prototype provides an effective system that enhances the safety and mobility of blind people in urban environments. The system's performance indicators support its effectiveness in providing two-way interactive alerts and proactive responses to protect the user.",
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "dcbb776458d85280512f2706cb280211681e96e8",
+    "externalIds": {
+      "DOI": "10.1109/ICAACE69793.2026.11508702",
+      "CorpusId": 288187672
+    },
+    "publicationVenue": null,
+    "url": "https://www.semanticscholar.org/paper/dcbb776458d85280512f2706cb280211681e96e8",
+    "title": "A GPS/BeiDou Dual-Mode Mobile Robot Localization Error Compensation Method Fused with IMU",
+    "venue": "2026 9th International Conference on Advanced Algorithms and Control Engineering (ICAACE)",
+    "year": 2026,
+    "citationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1109/ICAACE69793.2026.11508702?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1109/ICAACE69793.2026.11508702, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": null,
+    "publicationTypes": [
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "31137901",
+        "name": "Yaohan Wang"
+      },
+      {
+        "authorId": "2434465380",
+        "name": "Zhanhao Xue"
+      }
+    ],
+    "abstract": null,
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "1cc225354da27d0b20df9cc9d871bd64c3a8f79e",
+    "externalIds": {
+      "DBLP": "conf/smartcomp/ChenDWLM17",
+      "MAG": "2626347861",
+      "DOI": "10.1109/SMARTCOMP.2017.7946982",
+      "CorpusId": 206568077
+    },
+    "publicationVenue": {
+      "id": "e37581a5-dfe0-4f8f-8068-b423503fce67",
+      "name": "International Conference on Smart Computing",
+      "type": "conference",
+      "alternate_names": [
+        "IEEE Int Conf Smart Comput",
+        "SMARTCOMP",
+        "IEEE International Conference on Smart Computing",
+        "Int Conf Smart Comput"
+      ],
+      "url": "http://www.smart-comp.org/"
+    },
+    "url": "https://www.semanticscholar.org/paper/1cc225354da27d0b20df9cc9d871bd64c3a8f79e",
+    "title": "A Speed Hump Sensing Approach to Global Positioning in Urban Cities without Gps Signals",
+    "venue": "International Conference on Smart Computing",
+    "year": 2017,
+    "citationCount": 4,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1109/SMARTCOMP.2017.7946982?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1109/SMARTCOMP.2017.7946982, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "48771879",
+        "name": "Qiuxia Chen"
+      },
+      {
+        "authorId": "2056669561",
+        "name": "Dongdong Ding"
+      },
+      {
+        "authorId": "2108600682",
+        "name": "Xu Wang"
+      },
+      {
+        "authorId": "2148770609",
+        "name": "A. Liu"
+      },
+      {
+        "authorId": "3199735",
+        "name": "Ali Munir"
+      }
+    ],
+    "abstract": null,
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "078ea77b893c895151d1c3ffae80b64b17b9d40b",
+    "externalIds": {
+      "MAG": "2133314044",
+      "DOI": "10.1109/INTERACT.2010.5706204",
+      "CorpusId": 25588810
+    },
+    "publicationVenue": {
+      "id": "b99c6046-3238-451f-b39c-fdc4001b1a1d",
+      "name": "IFIP TC13 International Conference on Human-Computer Interaction",
+      "type": "conference",
+      "alternate_names": [
+        "Workshop Interact between Compil Comput Archit",
+        "INTERACT",
+        "IFIP TC13 Int Conf Human-computer Interact",
+        "Workshop on Interaction between Compilers and Computer Architectures"
+      ],
+      "url": "http://ifip-tc13.org/interact/"
+    },
+    "url": "https://www.semanticscholar.org/paper/078ea77b893c895151d1c3ffae80b64b17b9d40b",
+    "title": "A hybrid method for improving GPS accuracy for land vehicle navigation system",
+    "venue": "IFIP TC13 International Conference on Human-Computer Interaction",
+    "year": 2010,
+    "citationCount": 11,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1109/INTERACT.2010.5706204?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1109/INTERACT.2010.5706204, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": null,
+    "authors": [
+      {
+        "authorId": "144107617",
+        "name": "K. Venkatraman"
+      },
+      {
+        "authorId": "47645298",
+        "name": "B. Amutha"
+      },
+      {
+        "authorId": "47076801",
+        "name": "Sasi Rekha Sankar"
+      }
+    ],
+    "abstract": null,
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "c28a5eec4f638e4c5165d846d872ec97fac78fa9",
+    "externalIds": {
+      "MAG": "2936465445",
+      "DOI": "10.25777/XB9M-V936",
+      "CorpusId": 145975741
+    },
+    "publicationVenue": null,
+    "url": "https://www.semanticscholar.org/paper/c28a5eec4f638e4c5165d846d872ec97fac78fa9",
+    "title": "Algorithms for Constructing Vehicle Trajectories in Urban Networks Using Inertial Sensors Data from Mobile Devices",
+    "venue": "",
+    "year": 2017,
+    "citationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.25777/XB9M-V936?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.25777/XB9M-V936, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": null,
+    "authors": [
+      {
+        "authorId": "2397409625",
+        "name": "U. Ahmed"
+      }
+    ],
+    "abstract": null,
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  },
+  {
+    "paperId": "767a83a858306ad85b6dcc266e77832564631f5f",
+    "externalIds": {
+      "DBLP": "conf/ism/SalarianA16",
+      "MAG": "2575881474",
+      "DOI": "10.1109/ISM.2016.0043",
+      "CorpusId": 8701517
+    },
+    "publicationVenue": {
+      "id": "406b6adc-1fa6-4a35-b9f2-17e0a8ad5a73",
+      "name": "IEEE International Symposium on Multimedia",
+      "type": "conference",
+      "alternate_names": [
+        "Int Conf Ind 4.0 Smart Manuf",
+        "International Symposium on Multimedia",
+        "International Conference on Industry 4.0 and Smart Manufacturing",
+        "ISM",
+        "IEEE Int Symp Multimedia",
+        "Int Symp Multimedia"
+      ],
+      "url": "http://www.wikicfp.com/cfp/program?id=1724"
+    },
+    "url": "https://www.semanticscholar.org/paper/767a83a858306ad85b6dcc266e77832564631f5f",
+    "title": "Improved Image Retrieval for Efficient Localization in Urban Areas Using Location Uncertainty Data",
+    "venue": "IEEE International Symposium on Multimedia",
+    "year": 2016,
+    "citationCount": 4,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1109/ISM.2016.0043?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1109/ISM.2016.0043, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2706630",
+        "name": "Mahdi Salarian"
+      },
+      {
+        "authorId": "143806517",
+        "name": "R. Ansari"
+      }
+    ],
+    "abstract": null,
+    "_query": "assisted GPS positional accuracy mobile phones urban canyon"
+  }
+]

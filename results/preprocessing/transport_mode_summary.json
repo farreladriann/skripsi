@@ -1,0 +1,18 @@
+{
+  "method": "journal_based_speed_feature_rule",
+  "classification_rule": "motor_vehicle if max_speed >= 25 km/h or p95_speed >= 15 km/h",
+  "max_speed_threshold_kmh": 25.0,
+  "p95_speed_threshold_kmh": 15.0,
+  "n_input_rows": 552413,
+  "n_output_rows": 236700,
+  "n_input_maids": 42613,
+  "n_motor_vehicle_maids": 8458,
+  "n_non_vehicle_maids": 34155,
+  "rows_removed": 315713,
+  "maids_removed": 34155,
+  "literature_basis": [
+    "Reddy et al. (2010): GPS transport mode classification uses speed/acceleration features.",
+    "Zheng et al. (2008): GPS trajectory transportation mode inference uses velocity-derived features.",
+    "Rakhman (2024): local MPD vehicle/non-vehicle filtering context."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "total_pings_in_zones": 86042,
+  "total_unique_maids_in_zones": 7504,
+  "observation_days": 224,
+  "intersections": [
+    "kronggahan",
+    "jombor",
+    "monjali",
+    "kentungan",
+    "condongcatur",
+    "upn"
+  ],
+  "per_intersection": {
+    "kronggahan": {
+      "total_pings": 6426,
+      "unique_maids": 2007,
+      "avg_daily_maids": 9.0
+    },
+    "jombor": {
+      "total_pings": 8147,
+      "unique_maids": 2606,
+      "avg_daily_maids": 11.6
+    },
+    "monjali": {
+      "total_pings": 21758,
+      "unique_maids": 4454,
+      "avg_daily_maids": 19.9
+    },
+    "kentungan": {
+      "total_pings": 11407,
+      "unique_maids": 3217,
+      "avg_daily_maids": 14.4
+    },
+    "condongcatur": {
+      "total_pings": 21422,
+      "unique_maids": 4475,
+      "avg_daily_maids": 20.0
+    },
+    "upn": {
+      "total_pings": 16882,
+      "unique_maids": 3544,
+      "avg_daily_maids": 15.8
+    }
+  }
+}

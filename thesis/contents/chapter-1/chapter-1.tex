@@ -1,0 +1,62 @@
+\chapter{Pendahuluan}
+
+\section{Latar Belakang}
+
+Kota Yogyakarta dan kawasan sekitarnya merupakan salah satu wilayah perkotaan di Indonesia yang terus mengalami pertumbuhan penduduk, aktivitas pendidikan, kegiatan ekonomi, dan perjalanan harian \cite{bps_sleman_2024,bps_diy_2024}. Pertumbuhan tersebut meningkatkan tekanan pada jaringan jalan arteri yang menghubungkan Kota Yogyakarta dengan Kabupaten Sleman dan wilayah penyangga lain di Daerah Istimewa Yogyakarta (DIY). Salah satu koridor yang memiliki peran penting dalam sistem transportasi regional adalah Jalan Ring Road Utara (RRU), yang membentang dari kawasan Kronggahan di sisi barat hingga kawasan UPN di sisi timur.
+
+Ring Road Utara menghubungkan enam persimpangan bersinyal utama, yaitu Kronggahan, Jombor, Monjali, Kentungan, Condongcatur, dan UPN. Koridor ini berfungsi sebagai jalur penghubung antarkawasan permukiman, pendidikan, perdagangan, dan akses menuju jaringan jalan utama lainnya. Dalam konteks pergerakan harian, RRU tidak hanya melayani perjalanan lintas kawasan, tetapi juga perjalanan lokal yang masuk dan keluar dari cabang-cabang jalan di sekitar persimpangan.
+
+Pembangunan Jalan Tol Yogyakarta--Solo yang sedang berlangsung \cite{pupr_groundbreaking_ygs,kompas_tol_ygs_2024} menjadi konteks penting bagi koridor ini. Berdasarkan informasi proyek, sebagian trase dan akses tol direncanakan berinteraksi dengan koridor Ring Road Utara \cite{bpjt_tol_ygs,perpres_ygs_2018}. Keberadaan akses tol berpotensi mengubah distribusi arus lalu lintas pada jalan permukaan, terutama di sekitar simpang dan segmen yang menjadi titik akses utama. Oleh karena itu, diperlukan karakterisasi kondisi dasar atau \textit{baseline} sebelum perubahan infrastruktur tersebut dapat dievaluasi secara lebih lanjut.
+
+Pengumpulan data lalu lintas secara konvensional, seperti survei manual di persimpangan, kamera, atau sensor tetap, memiliki keterbatasan dalam cakupan spasial, durasi pengamatan, dan biaya pelaksanaan \cite{quddus2007}. Di sisi lain, perkembangan teknologi \textit{mobile positioning} memungkinkan pengamatan mobilitas dalam skala besar. \textit{Mobile Positioning Data} (MPD) aktif, yang diperoleh dari perangkat GPS pada \textit{smartphone} dengan persetujuan pengguna, menyediakan titik lokasi dan waktu yang dapat dimanfaatkan untuk mengidentifikasi indikasi perjalanan kendaraan \cite{calabrese2013}.
+
+Meskipun demikian, MPD aktif tidak dapat diperlakukan sebagai pengganti langsung data volume lalu lintas aktual. Data ini hanya merepresentasikan perangkat yang teramati, memiliki bias sampel, dan memiliki frekuensi pencuplikan yang tidak seragam. Oleh karena itu, penelitian ini memosisikan hasil analisis sebagai indikator berbasis sampel, seperti jumlah perangkat unik, jumlah ping, jumlah trip terindikasi, distribusi OD zona, dan intensitas pada zona persimpangan. Dengan pembatasan tersebut, MPD aktif tetap dapat memberikan gambaran spatiotemporal yang bermanfaat untuk menyusun \textit{baseline} pergerakan kendaraan pada koridor RRU.
+
+Penelitian sebelumnya oleh Nurlita (2024) menunjukkan bahwa MPD aktif dapat digunakan untuk mengidentifikasi indikator pola kecepatan dan pergerakan di Jalan Malioboro, meskipun terdapat keterbatasan akibat frekuensi pencuplikan yang rendah \cite{nurlita2024}. Penelitian lain dalam kelompok riset yang sama mengembangkan metode klasifikasi kendaraan dan non-kendaraan menggunakan data GPS di area persimpangan \cite{rakhman2024}. Namun, sejauh tinjauan pustaka yang dilakukan penulis, penelitian yang secara khusus menyusun karakterisasi spatiotemporal kendaraan teramati pada koridor Ring Road Utara menggunakan MPD aktif dengan fokus pada OD zona persimpangan, indikator intensitas persimpangan, dan pola OD zona eksploratif masih terbatas.
+
+\section{Rumusan Masalah}
+
+Berdasarkan latar belakang tersebut, rumusan masalah dalam penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+    \item Bagaimana distribusi perjalanan \textit{origin-destination} (OD) terindikasi pada enam zona persimpangan utama di Ring Road Utara, dan bagaimana variasinya berdasarkan waktu?
+    \item Bagaimana pola intensitas pergerakan kendaraan teramati pada setiap zona persimpangan berdasarkan jumlah ping dan MAID unik?
+    \item Bagaimana karakteristik temporal perjalanan kendaraan, khususnya distribusi jumlah ping per trip, pada data MPD aktif yang telah dipraproses?
+    \item Bagaimana pola OD zona eksploratif yang berkaitan dengan indikasi arah pergerakan dapat diidentifikasi dari data persimpangan, dengan mempertimbangkan keterbatasan frekuensi pencuplikan GPS?
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+
+Penelitian ini bertujuan untuk:
+\begin{enumerate}
+    \item Mengekstraksi dan menganalisis matriks \textit{origin-destination} (OD) berbasis enam zona persimpangan di koridor Ring Road Utara.
+    \item Mengestimasi indikator intensitas pergerakan kendaraan teramati pada zona persimpangan menggunakan jumlah ping, MAID unik, dan agregasi temporal.
+    \item Mengevaluasi karakteristik sparsitas trajektori melalui distribusi jumlah ping per trip pada periode pengamatan.
+    \item Mengklasifikasikan pola OD zona secara eksploratif dan konservatif berdasarkan pasangan zona asal--tujuan yang teramati.
+\end{enumerate}
+
+\section{Batasan Penelitian}
+
+Penelitian ini memiliki beberapa batasan, yaitu:
+\begin{enumerate}
+    \item Objek penelitian adalah karakterisasi pergerakan kendaraan terindikasi pada enam persimpangan utama di koridor Ring Road Utara, Kabupaten Sleman, DIY.
+    \item Sumber data adalah MPD aktif yang diperoleh dari perangkat \textit{smartphone} dengan persetujuan pengguna, sehingga hasil tidak merepresentasikan seluruh populasi kendaraan di jalan.
+    \item Periode data adalah Oktober 2021 hingga Juni 2022.
+    \item Metode \textit{map matching} yang digunakan adalah pencocokan geometris berbasis \textit{nearest-edge}, bukan \textit{Hidden Markov Model}.
+    \item Analisis OD menggunakan zona persimpangan pertama dan terakhir yang teramati dalam trip, sehingga tidak ditafsirkan sebagai asal dan tujuan perjalanan sebenarnya di luar koridor.
+    \item Penelitian ini tidak menganalisis \textit{catchment area} atau estimasi lokasi rumah pengguna, karena fokus penelitian diarahkan pada karakteristik pergerakan yang teramati di koridor dan persimpangan.
+    \item Analisis intensitas persimpangan diposisikan sebagai indikator berbasis sampel MPD aktif, bukan kepadatan atau volume lalu lintas aktual.
+    \item Frekuensi pencuplikan GPS yang rendah membatasi akurasi rekonstruksi lintasan dan klasifikasi belokan aktual.
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+
+Hasil penelitian ini diharapkan dapat memberikan manfaat untuk:
+\begin{enumerate}
+    \item Pembuat kebijakan transportasi, sebagai informasi \textit{baseline} berbasis sampel mengenai pola pergerakan teramati sebelum perubahan jaringan akibat pembangunan Jalan Tol Yogyakarta--Solo.
+    \item Perencana lalu lintas, sebagai bahan awal untuk mengidentifikasi zona persimpangan yang memiliki intensitas pergerakan tinggi dan perlu diperhatikan dalam manajemen lalu lintas.
+    \item Peneliti di bidang transportasi, sebagai referensi pemanfaatan MPD aktif untuk analisis spatiotemporal koridor jalan perkotaan secara konservatif dan terukur.
+\end{enumerate}
+
+\section{Sistematika Penulisan}
+
+Bab I membahas pendahuluan yang terdiri dari latar belakang, rumusan masalah, tujuan penelitian, batasan penelitian, dan manfaat penelitian. Bab II membahas tinjauan pustaka dan dasar teori yang digunakan dalam penelitian. Bab III membahas metodologi penelitian, termasuk praproses data, \textit{map matching}, segmentasi trajektori, pelabelan persimpangan, dan modul analisis. Bab IV menyajikan hasil dan pembahasan. Bab V menyajikan kesimpulan dan saran.

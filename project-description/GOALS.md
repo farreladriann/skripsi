@@ -1,3 +1,11 @@
+Nama :Muhamad Farrel Adrian
+NIU : 22/505897/TK/55394
+Mahasiswa DTETI UGM Angkatan 2022 Jurusan Teknologi Informasi
+
+Dosen Pembimbing
+Pembimbing 1 : Azkario Rizky Pratama, Ir., S.T., M.Eng., Ph.D., IPM.
+Pembimbing 2 :  Widyawan, S.T., M.Sc., Ph.D.
+
 ### Masalah
 
 Jalan Tol Jogja Solo akan dibangun, dimana tol jogja solo ini melayang di atas jalan pada jalan Ring Road Utara. Di jalan Ring Road Utara ini terdapat enam persimpangan jalan besar dan keenam persimpangan ini terdapat lampu merah dan persimpangan ini juga perempatan. Berurutan dari barat ke timur.
@@ -24,16 +32,18 @@ Keempat exit tol joga solo:
 3. Exit Monjali: Monumen Jogja Kembali (Palagan), tengah antara Jl. Palagan Tentara Pelajar & Jl. Kaliurang. Di antara Simpang Monjali dan Simpang Kentungan.
 4. Exit Trihanggo: Simpang Empat Trihanggo / Junction Sleman (paling barat). Di antara Simpang Jombor dan Simpang Kronggahan.
 
-### Tujuan Penelitian
+### Tujuan Penelitian Aktif
 
-- Ekstraksi Matriks Asal-Tujuan (Origin-Destination Matrix):
-Membangun matriks asal-tujuan pada tiap persimpangan utama untuk memetakan pola distribusi perjalanan pengguna jalan yang melintasi ruas Jalan Ring Road Utara.
+- Ekstraksi Matriks OD Zona Persimpangan:
+Membangun matriks OD berbasis persimpangan pertama dan terakhir yang teramati dalam trip pada enam zona persimpangan utama Ring Road Utara. OD ini tidak ditafsirkan sebagai asal dan tujuan perjalanan sebenarnya di luar koridor.
 
-- Analisis Pergerakan Membelok (Turning Movement):
-Mengidentifikasi dan menganalisis arah pergerakan kendaraan  pada saat pengguna melintasi keenam persimpangan bersinyal di sepanjang Jalan Ring Road Utara.
+- Analisis Indikator Intensitas Persimpangan:
+Menganalisis intensitas kendaraan teramati di setiap zona persimpangan berdasarkan jumlah ping dan MAID unik pada beberapa agregasi waktu. Indikator ini bukan kepadatan atau volume lalu lintas aktual.
 
-- Estimasi Kepadatan Lalu Lintas (Traffic Density):
-Menganalisis tingkat kepadatan dan volume kendaraan di masing-masing titik persimpangan berdasarkan akumulasi data ping lokasi (MAID) pada rentang waktu tertentu.
+- Evaluasi Sparsitas Trajektori:
+Menganalisis distribusi jumlah ping per trip untuk menentukan batas interpretasi data MPD aktif dan menghindari klaim rekonstruksi lintasan yang terlalu detail.
 
-- Pemetaan Catchment Area:
-Menentukan dan memvisualisasikan catchment area (zona asal) dari para pengguna kendaraan yang melewati Jalan Ring Road Utara.
+- Pola OD Zona Eksploratif:
+Mengidentifikasi indikasi arah pergerakan berbasis pasangan OD zona. Hasil ini dibaca sebagai pola zona teramati, bukan analisis belokan geometris yang tervalidasi.
+
+Catatan: analisis catchment area dan estimasi lokasi rumah tidak termasuk dalam ruang lingkup naskah aktif agar metodologi tetap sederhana, konservatif, dan robust.

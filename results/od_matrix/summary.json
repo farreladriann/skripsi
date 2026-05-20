@@ -1,0 +1,24 @@
+{
+  "total_trips": 38973,
+  "trips_with_known_od": 28767,
+  "intersections": [
+    "kronggahan",
+    "jombor",
+    "monjali",
+    "kentungan",
+    "condongcatur",
+    "upn"
+  ],
+  "total_od_flow": 28767,
+  "months_covered": [
+    "2021-10",
+    "2021-11",
+    "2021-12",
+    "2022-01",
+    "2022-02",
+    "2022-03",
+    "2022-04",
+    "2022-05",
+    "2022-06"
+  ]
+}

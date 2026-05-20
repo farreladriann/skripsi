@@ -35,4 +35,4 @@ intersections = {
 }
 
 # rtree
-MAX_DIST_METERS = 50.0
+MAX_DIST_METERS = 20.0

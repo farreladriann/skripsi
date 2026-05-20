@@ -32,8 +32,10 @@ cache/
 plots/
 data/
 scratch/
+archive/
 references/*.pdf
 references/**/*.pdf
+results/**/*.parquet
 
 # Local literature/source PDFs and extracted full text
 previous-thesis/*.pdf

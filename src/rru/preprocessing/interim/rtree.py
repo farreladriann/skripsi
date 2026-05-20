@@ -7,12 +7,13 @@ from pyproj import Transformer
 from shapely.strtree import STRtree
 
 from src.rru.utils import drop_singleton_maids
+from src.rru.paths import RRU_WITH_INTERSECTION_CLEAN_GEOJSON
 from configs import MAX_DIST_METERS
 
 PROCESSED_DIR = Path("./data")
 OUTPUT_BBOX = PROCESSED_DIR / "interim" / "output_bbox.parquet"
 OUTPUT_CANDIDATES = PROCESSED_DIR / "interim" / "gps_rru_candidates.parquet"
-GEOJSON_EDGES = PROCESSED_DIR / "external" / "rru_with_intersections.geojson"
+GEOJSON_EDGES = RRU_WITH_INTERSECTION_CLEAN_GEOJSON
 EPSG_WGS84 = 4326
 EPSG_UTM49S = 32749
 

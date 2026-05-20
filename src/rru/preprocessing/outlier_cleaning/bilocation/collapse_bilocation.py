@@ -3,6 +3,7 @@ from pathlib import Path
 from .bilocation_check import add_bbox_spread_column
 from src.rru.preprocessing.interim.rtree import find_edge_candidates_chunked, build_edge_spatial_index
 from src.rru.utils import drop_singleton_maids
+from src.rru.paths import RRU_WITH_INTERSECTION_CLEAN_GEOJSON
 import geopandas as gpd
 from configs import MAX_DIST_METERS
 
@@ -10,7 +11,7 @@ EPSG_WGS84 = 4326
 EPSG_UTM49S = 32749
 MAX_SPREAD_M = 10.0
 OUTPUT_CANDIDATES = Path("./data/interim/gps_rru_candidates.parquet")
-GEOJSON_EDGES = Path("./data/external/rru_with_intersections.geojson")
+GEOJSON_EDGES = RRU_WITH_INTERSECTION_CLEAN_GEOJSON
 OUTPUT_COLLAPSED = Path("./data/processed/gps_rru_collapsed.parquet")
 
 def collapse_bilocation(

@@ -1,0 +1,15 @@
+\chapter*{LAMPIRAN}
+
+\section{Parameter Utama Pipeline}
+
+Lampiran ini merangkum parameter operasional yang digunakan pada analisis utama. Parameter ini dipilih untuk menjaga alur penelitian tetap sederhana, dapat direplikasi, dan konservatif terhadap keterbatasan MPD aktif.
+
+\begin{enumerate}
+\item Ambang kandidat R-tree terhadap jaringan Ring Road Utara: 20 meter.
+\item Segmentasi trajektori: gap waktu 10 menit, dengan trip valid minimal dua titik GPS.
+\item Filter indikasi kendaraan bermotor: MAID dipertahankan apabila memiliki kecepatan maksimum minimal 25 km/jam atau persentil ke-95 kecepatan minimal 15 km/jam.
+\item Radius zona persimpangan: 200 meter dari titik pusat simpang.
+\item Definisi OD: persimpangan pertama dan terakhir yang teramati dalam satu trip.
+\end{enumerate}
+
+Nilai-nilai tersebut tidak diposisikan sebagai parameter universal. Hasil penelitian perlu dibaca sebagai keluaran pada konfigurasi parameter tersebut dan tidak sebagai estimasi volume lalu lintas aktual.

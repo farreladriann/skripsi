@@ -1,0 +1,2 @@
+source,feb_months,n_trips_feb,n_maids_feb,n_pings_feb,min,max,mean,median,std,share_le_2,share_le_3,share_le_5,share_ge_10,share_ge_20
+data/matched/backbone/trip_summary.parquet,['2022-02'],14919,3680,83107,2,102,5.5705476238353775,4.0,5.853254747570733,29.07701588578323,46.698840404852874,67.85307326228299,13.479455727595683,2.4331389503317915

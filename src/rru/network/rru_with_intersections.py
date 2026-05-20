@@ -33,7 +33,8 @@ RRU_NAMES = (
     "babarsari", "pawiro",
 )
 HIGHWAY_CLASSES = ("trunk", "primary")
-OUTPUT_FILENAME = "rru_with_intersections.geojson"
+OUTPUT_FILENAME = "generated_network/rru_with_intersections.geojson"
+BACKBONE_OUTPUT_FILENAME = "generated_network/rru_backbone.geojson"
 
 # Backbone road names (west→east), including roundabout for Jombor
 _BACKBONE_NAMES = (
@@ -362,6 +363,7 @@ def _build_intersection_lines(
     G: nx.MultiDiGraph,
     backbone_nodes: set[int],
     nodes_gdf: gpd.GeoDataFrame,
+    max_branch_length_m: float = MAX_BRANCH_LENGTH_M,
 ) -> set[frozenset]:
     """
     Build north and south line segments for one intersection road.
@@ -397,6 +399,7 @@ def _build_intersection_lines(
     for comp_nodes in selected_comps:
         all_pairs |= _trace_lines_from_anchor(
             comp_nodes, sub, int_lon, int_lat, nodes_gdf,
+            max_distance_m=max_branch_length_m,
         )
 
     if not all_pairs:
@@ -534,32 +537,35 @@ def _ensure_single_component(
 # ═══════════════════════════════════════════════════════════════════
 
 
-def load_rru_with_intersections(
-    cache_dir: Path = CACHE_DIR,
+def build_rru_with_intersections_from_graph(
+    G: nx.MultiDiGraph,
+    nodes_gdf: gpd.GeoDataFrame | None = None,
+    max_branch_length_m: float = MAX_BRANCH_LENGTH_M,
 ) -> gpd.GeoDataFrame:
     """
-    Build the RRU fishbone network and save as GeoJSON.
+    Build the RRU fishbone network from an already-loaded OSM graph.
 
-    Steps:
-    1. Build backbone (single west→east line)
-    2. Build intersection branches (north + south, max {MAX_BRANCH_LENGTH_M}m each)
-    3. Ensure full connectivity (bridge any stray components)
-    4. Collect and deduplicate edges
-    5. Save to cache
+    This keeps sensitivity runs fast because the large Sleman graph only needs
+    to be loaded once by the caller.
     """
-    G = load_or_build_graph(cache_dir)
-    nodes_gdf, _ = ox.graph_to_gdfs(G)
+    if nodes_gdf is None:
+        nodes_gdf, _ = ox.graph_to_gdfs(G)
 
     # 1. Backbone
     print("Building backbone...")
     backbone_pairs, backbone_nodes = _build_backbone(G, nodes_gdf)
 
     # 2. Intersection branches
-    print(f"Building intersection lines (max {MAX_BRANCH_LENGTH_M}m)...")
+    print(f"Building intersection lines (max {max_branch_length_m}m)...")
     all_pairs = set(backbone_pairs)
     for int_name, road_names in _INTERSECTION_ROADS.items():
         all_pairs |= _build_intersection_lines(
-            int_name, road_names, G, backbone_nodes, nodes_gdf,
+            int_name,
+            road_names,
+            G,
+            backbone_nodes,
+            nodes_gdf,
+            max_branch_length_m=max_branch_length_m,
         )
 
     # 3. Connectivity repair
@@ -570,13 +576,64 @@ def load_rru_with_intersections(
     edges = edges.copy()
     edges["oneway"] = False
 
+    return edges
+
+
+def build_rru_backbone_from_graph(
+    G: nx.MultiDiGraph,
+    nodes_gdf: gpd.GeoDataFrame | None = None,
+) -> gpd.GeoDataFrame:
+    """
+    Build only the Ring Road Utara backbone (west-east main carriageway).
+
+    This intentionally excludes the north/south intersection branches used in
+    the earlier fishbone network. It is the network used when OD, density, and
+    catchment analysis should represent vehicles that are observed on the RRU
+    mainline only.
+    """
+    if nodes_gdf is None:
+        nodes_gdf, _ = ox.graph_to_gdfs(G)
+
+    print("Building backbone-only RRU network...")
+    backbone_pairs, _ = _build_backbone(G, nodes_gdf)
+    backbone_pairs = _ensure_single_component(backbone_pairs, G, nodes_gdf)
+
+    edges = _collect_edges_from_pairs(backbone_pairs, G).copy()
+    edges["oneway"] = False
+    edges["network_role"] = "backbone"
+    return edges
+
+
+def load_rru_with_intersections(
+    cache_dir: Path = CACHE_DIR,
+    max_branch_length_m: float = MAX_BRANCH_LENGTH_M,
+    output_filename: str = OUTPUT_FILENAME,
+) -> gpd.GeoDataFrame:
+    """
+    Build the RRU fishbone network and save as GeoJSON.
+
+    Steps:
+    1. Build backbone (single west→east line)
+    2. Build intersection branches (north + south, max `max_branch_length_m` each)
+    3. Ensure full connectivity (bridge any stray components)
+    4. Collect and deduplicate edges
+    5. Save to cache
+    """
+    G = load_or_build_graph(cache_dir)
+    nodes_gdf, _ = ox.graph_to_gdfs(G)
+    edges = build_rru_with_intersections_from_graph(
+        G,
+        nodes_gdf=nodes_gdf,
+        max_branch_length_m=max_branch_length_m,
+    )
+
     # 5. Verify and save
     graph = nx.Graph()
     for u, v, _ in edges.index:
         graph.add_edge(u, v)
     n_components = nx.number_connected_components(graph)
 
-    cache_path = cache_dir / OUTPUT_FILENAME
+    cache_path = cache_dir / output_filename
     cache_path.parent.mkdir(parents=True, exist_ok=True)
     edges.to_file(cache_path, driver="GeoJSON")
     print(f"✓ Saved {len(edges)} edges ({n_components} component) → {cache_path}")
@@ -584,5 +641,30 @@ def load_rru_with_intersections(
     return edges
 
 
+def load_rru_backbone(
+    cache_dir: Path = CACHE_DIR,
+    output_filename: str = BACKBONE_OUTPUT_FILENAME,
+) -> gpd.GeoDataFrame:
+    """Build the backbone-only RRU network and save it as GeoJSON."""
+    G = load_or_build_graph(cache_dir)
+    nodes_gdf, _ = ox.graph_to_gdfs(G)
+    edges = build_rru_backbone_from_graph(G, nodes_gdf=nodes_gdf)
+
+    graph = nx.Graph()
+    for u, v, _ in edges.index:
+        graph.add_edge(u, v)
+    n_components = nx.number_connected_components(graph)
+
+    cache_path = cache_dir / output_filename
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    edges.to_file(cache_path, driver="GeoJSON")
+    total_length_km = edges.to_crs(epsg=32749).length.sum() / 1000
+    print(
+        f"✓ Saved backbone-only network: {len(edges)} edges, "
+        f"{total_length_km:.2f} km ({n_components} component) → {cache_path}"
+    )
+    return edges
+
+
 if __name__ == "__main__":
-    load_rru_with_intersections()
+    load_rru_backbone()

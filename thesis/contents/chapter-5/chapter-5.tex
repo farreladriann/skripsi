@@ -1,0 +1,33 @@
+\chapter{Kesimpulan dan Saran}
+
+\section{Kesimpulan}
+
+Pada penelitian ini telah dilakukan karakterisasi \textit{baseline} spatiotemporal perjalanan kendaraan terindikasi pada koridor Ring Road Utara menggunakan MPD aktif. Analisis difokuskan pada OD zona persimpangan, indikator intensitas persimpangan, distribusi jumlah ping per trip, dan pola OD zona eksploratif. Seluruh kesimpulan dibatasi pada pergerakan yang teramati di dalam koridor dan zona persimpangan. Berdasarkan hasil penelitian, diperoleh kesimpulan sebagai berikut:
+
+\begin{enumerate}
+    \item Pipeline praproses berhasil mereduksi 15.386.869 titik GPS pada wilayah kajian menjadi 236.700 titik dari 8.458 MAID yang terindikasi sebagai kendaraan bermotor pada jaringan RRU. Setelah segmentasi trajektori, diperoleh 212.407 ping, 8.382 MAID, dan 38.973 trip valid. Hasil \textit{map matching} menunjukkan jarak pencocokan yang relatif dekat dengan jaringan jalan, yaitu median 5,0 meter dan persentil ke-99 sebesar 19,2 meter.
+    
+    \item Data MPD aktif yang digunakan memiliki karakteristik trajektori sparse. Median jumlah ping per trip adalah 4 ping, dan 70,37\% trip memiliki paling banyak 5 ping. Kondisi ini menunjukkan bahwa data lebih sesuai untuk analisis agregat spatiotemporal dibandingkan rekonstruksi lintasan detail.
+    
+    \item Matriks OD 6 zona berhasil diekstraksi dari 28.767 trip dengan pasangan origin dan destination teridentifikasi. Sebanyak 58,48\% trip berada pada diagonal utama, yang menunjukkan banyaknya trip yang hanya teramati pada zona persimpangan yang sama. Pasangan OD non-diagonal terbesar adalah Condongcatur--UPN sebanyak 956 trip, Condongcatur--Monjali sebanyak 842 trip, Monjali--Condongcatur sebanyak 752 trip, dan UPN--Condongcatur sebanyak 692 trip. Pola ini menunjukkan kuatnya interaksi kendaraan teramati pada bagian tengah--timur koridor RRU.
+    
+    \item Indikator intensitas persimpangan menunjukkan bahwa Condongcatur dan Monjali merupakan dua zona dengan intensitas pengamatan tertinggi. Rata-rata MAID unik harian pada Condongcatur adalah 39,6 MAID/hari, diikuti Monjali sebesar 39,3 MAID/hari, UPN sebesar 30,1 MAID/hari, Kentungan sebesar 27,6 MAID/hari, Jombor sebesar 21,4 MAID/hari, dan Kronggahan sebesar 15,6 MAID/hari. Hasil ini mengindikasikan bahwa bagian tengah hingga timur RRU memiliki intensitas kendaraan teramati lebih tinggi dibandingkan sisi barat dalam sampel MPD aktif.
+    
+    \item Perbandingan temporal menunjukkan bahwa OD pada hari kerja mencakup 19.833 trip atau 68,94\% dari total OD teridentifikasi, sedangkan akhir pekan mencakup 8.934 trip atau 31,06\%. OD pada jam sibuk mencakup 7.121 trip, sedangkan jam non-sibuk mencakup 21.646 trip. Nilai absolut hari kerja lebih besar dalam sampel, tetapi interpretasi intensitas harian tetap memerlukan normalisasi terhadap jumlah hari pengamatan.
+    
+    \item Klasifikasi pola OD zona eksploratif menghasilkan 26 pola pergerakan. Kategori terbesar adalah O=D atau zona sama sebanyak 16.823 pola. Kategori ini tidak ditafsirkan sebagai putar balik fisik, melainkan sebagai indikasi trip dengan origin dan destination pada zona yang sama. Oleh karena itu, hasil analisis ini harus dibaca sebagai pola OD zona, bukan observasi geometris belokan aktual.
+\end{enumerate}
+
+Secara keseluruhan, penelitian ini menunjukkan bahwa MPD aktif dapat dimanfaatkan untuk menyusun \textit{baseline} deskriptif spatiotemporal kendaraan terindikasi pada koridor Ring Road Utara. Baseline ini bermanfaat sebagai gambaran awal kondisi pergerakan teramati sebelum evaluasi lanjutan terhadap perubahan jaringan akibat pembangunan Tol Yogyakarta--Solo. Namun, hasil penelitian tetap harus dipahami sebagai indikator berbasis sampel, bukan pengukuran volume lalu lintas aktual.
+
+\section{Saran}
+
+Berdasarkan hasil dan keterbatasan penelitian ini, beberapa saran untuk penelitian selanjutnya adalah sebagai berikut:
+\begin{enumerate}
+    \item Melakukan validasi terhadap indikator intensitas MPD aktif menggunakan data survei lalu lintas manual, kamera, atau sensor tetap sehingga hubungan antara MAID teramati dan volume kendaraan aktual dapat dipahami dengan lebih baik.
+    \item Mengembangkan metode \textit{map matching} yang memasukkan informasi topologi jaringan atau probabilistik, seperti HMM, apabila tersedia data GPS dengan frekuensi pencuplikan yang lebih rapat.
+    \item Melakukan analisis sensitivitas lanjutan terhadap parameter penting, seperti radius zona persimpangan, ambang gap segmentasi, dan ambang klasifikasi moda kendaraan. Sensitivitas awal terhadap ambang R-tree telah digunakan untuk mendukung pemilihan radius 20 meter, tetapi belum diperluas hingga seluruh keluaran OD dan intensitas.
+    \item Membandingkan hasil \textit{baseline} penelitian ini dengan data setelah Tol Yogyakarta--Solo beroperasi untuk mengevaluasi perubahan pola pergerakan secara deskriptif.
+    \item Memisahkan analisis untuk periode dengan sampel kuat, seperti Februari dan Mei 2022, agar variasi temporal bulanan dapat dibandingkan tanpa terlalu dipengaruhi bulan dengan jumlah sampel kecil.
+
+\end{enumerate}

@@ -1,0 +1,93 @@
+\chapter{Tinjauan Pustaka dan Dasar Teori}
+
+\section{Tinjauan Pustaka}
+
+Beberapa penelitian terdahulu yang relevan dengan penelitian ini dirangkum dalam Tabel \ref{tab:tinjauan-pustaka}.
+
+\begin{table}[htbp]
+\centering
+\caption{Ringkasan Tinjauan Pustaka}
+\label{tab:tinjauan-pustaka}
+\small
+\begin{tabular}{p{2.5cm}p{3.2cm}p{3cm}p{4.3cm}}
+\hline
+Penulis & Metode & Data & Hasil Utama\\
+\hline
+Nurlita (2024) \cite{nurlita2024} & \textit{Path reconstruction} berbasis HMM dan interpolasi waktu & MPD aktif, Jl. Malioboro, Jan--Feb 2022 & Mengidentifikasi indikator pola kecepatan dan pergerakan; korelasi dengan referensi Google Maps dilaporkan pada tingkat agregat.\\
+Alexander et al. (2015) \cite{alexander2015} & Ekstraksi trip, klasifikasi tujuan, \textit{expansion factor} & CDR, Boston & Matriks OD dari data ponsel berkorelasi dengan survei rumah tangga pada agregasi spasial kota.\\
+Calabrese et al. (2013) \cite{calabrese2013} & Analisis jejak ponsel dan validasi terhadap odometer & MPD pasif, Boston & Data ponsel dapat menjadi proksi mobilitas individu pada tingkat agregat.\\
+Newson dan Krumm (2009) \cite{newson2009} & HMM untuk \textit{map matching} & Trajektori GPS, Seattle & Akurasi HMM menurun signifikan ketika interval pencuplikan membesar.\\
+Quddus et al. (2007) \cite{quddus2007} & Survei algoritma \textit{map matching} & Tinjauan literatur & Metode \textit{map matching} dapat diklasifikasikan menjadi geometris, topologis, probabilistik, dan lanjutan.\\
+Zheng (2015) \cite{zheng2015} & Survei \textit{trajectory data mining} & Tinjauan literatur & Menyajikan kerangka segmentasi, klasifikasi, dan analisis trajektori.\\
+Zheng et al. (2008) \cite{zheng2008} dan Reddy et al. (2010) \cite{reddy2010} & Klasifikasi moda transportasi berbasis fitur GPS & Trajektori GPS & Fitur kecepatan dan perubahan gerak efektif untuk membedakan berjalan kaki, sepeda, dan kendaraan bermotor.\\
+Barbosa et al. (2018) \cite{barbosa2018} & Survei model mobilitas manusia & Tinjauan literatur & Mobilitas manusia dapat dianalisis menggunakan data skala besar dengan tetap memperhatikan bias dan keterbatasan observasi.\\
+\hline
+\end{tabular}
+\end{table}
+
+Berdasarkan tinjauan pustaka di atas, dapat diidentifikasi beberapa kesenjangan penelitian yang menjadi motivasi penelitian ini:
+\begin{enumerate}
+    \item Penelitian sebelumnya di kelompok riset ini berfokus pada koridor Jalan Malioboro yang merupakan jalan satu arah wisata, bukan koridor arteri multipersimpangan seperti Ring Road Utara.
+    \item Penelitian yang melakukan karakterisasi spatiotemporal pergerakan kendaraan pada tingkat persimpangan di koridor Ring Road Utara menggunakan MPD aktif masih terbatas.
+    \item Pemanfaatan MPD aktif untuk menyusun OD zona, indikator intensitas persimpangan, dan pola OD zona eksploratif pada koridor perkotaan di Indonesia masih terbatas.
+\end{enumerate}
+
+\section{Dasar Teori}
+
+\subsection{Mobile Positioning Data (MPD)}
+
+\textit{Mobile Positioning Data} (MPD) adalah data lokasi yang berkaitan dengan penggunaan perangkat ponsel dan dapat dikumpulkan melalui interaksi perangkat dengan jaringan atau sensor lokasi \cite{calabrese2013}. MPD dapat dibagi menjadi dua jenis utama:
+\begin{enumerate}
+    \item MPD aktif, yaitu data lokasi GPS dari aplikasi atau perangkat dengan izin pengguna, dan umumnya memiliki resolusi spasial lebih tinggi dibandingkan CDR.
+    \item MPD pasif, yaitu data yang dikumpulkan oleh operator seluler melalui aktivitas jaringan seperti \textit{Call Detail Records} (CDR), dengan akurasi yang bergantung pada kepadatan menara seluler.
+\end{enumerate}
+
+Dataset yang digunakan dalam penelitian ini merupakan MPD aktif dengan empat kolom fitur seperti ditunjukkan pada Tabel \ref{tab:fitur-mpd}.
+
+\begin{table}[htbp]
+\centering
+\caption{Kolom Fitur MPD Aktif}
+\label{tab:fitur-mpd}
+\begin{tabular}{ll}
+\hline
+Fitur & Deskripsi\\
+\hline
+\texttt{maid} & Nomor identifikasi unik perangkat (\textit{Mobile Advertising ID})\\
+\texttt{latitude} & Koordinat garis lintang lokasi perangkat\\
+\texttt{longitude} & Koordinat garis bujur lokasi perangkat\\
+\texttt{timestamp} & Waktu pencuplikan dalam format Unix Timestamp\\
+\hline
+\end{tabular}
+\end{table}
+
+Dalam konteks penelitian ini, MPD aktif diperlakukan sebagai data observasi berbasis sampel. Oleh karena itu, jumlah MAID, ping, atau trip yang dihitung tidak ditafsirkan sebagai volume lalu lintas aktual, melainkan sebagai indikator intensitas kendaraan yang teramati dalam dataset.
+
+\subsection{Klasifikasi Moda Transportasi Berbasis GPS}
+
+Klasifikasi moda transportasi dari data GPS umumnya memanfaatkan fitur turunan gerak seperti kecepatan maksimum, kecepatan rata-rata, akselerasi, dan persentil kecepatan. Zheng et al. \cite{zheng2008} menunjukkan bahwa fitur kecepatan dan perubahan gerak dapat digunakan untuk memahami mobilitas dan membedakan pola perjalanan. Reddy et al. \cite{reddy2010} juga menggunakan fitur kecepatan dan akselerasi dari ponsel untuk membedakan moda berjalan, bersepeda, dan kendaraan bermotor. Karena dataset penelitian ini tidak memiliki label moda hasil survei lapangan, klasifikasi dilakukan menggunakan aturan ambang kecepatan yang transparan dan dapat direplikasi, bukan model terawasi yang membutuhkan data latih berlabel.
+
+\subsection{Map Matching}
+
+\textit{Map matching} adalah teknik penyelarasan data posisi dari perangkat pelacakan dengan peta jalan \cite{quddus2007}. Berdasarkan taksonomi Quddus et al. (2007), algoritma \textit{map matching} dapat diklasifikasikan menjadi empat kategori:
+\begin{enumerate}
+    \item Geometris, yaitu metode yang menggunakan jarak terdekat antara titik GPS dan segmen jalan.
+    \item Topologis, yaitu metode yang menambahkan pertimbangan konektivitas jaringan jalan.
+    \item Probabilistik, yaitu metode yang menggunakan model probabilitas seperti \textit{Hidden Markov Model} (HMM) \cite{newson2009}.
+    \item Lanjutan, yaitu metode yang menggunakan \textit{fuzzy logic}, Kalman filter, atau kombinasi beberapa pendekatan.
+\end{enumerate}
+
+Pemilihan metode \textit{map matching} bergantung pada kompleksitas jaringan jalan dan frekuensi pencuplikan data GPS. Newson dan Krumm (2009) menunjukkan bahwa HMM efektif pada interval pencuplikan yang relatif rapat, namun akurasinya menurun ketika interval pencuplikan membesar \cite{newson2009}. Lou et al. (2009) juga menekankan bahwa trajektori GPS dengan interval pencuplikan rendah menimbulkan ketidakpastian yang lebih besar dalam penyelarasan ke jaringan jalan \cite{lou2009}. Karena penelitian ini menggunakan jaringan koridor yang relatif terbatas dan data MPD aktif dengan frekuensi tidak seragam, pendekatan geometris berbasis \textit{nearest-edge} digunakan sebagai metode yang transparan dan dapat direplikasi.
+
+\subsection{Segmentasi Trajektori dan Data Sparse}
+
+Segmentasi trajektori adalah proses pembagian urutan titik GPS menjadi subtrajektori yang bermakna \cite{zheng2015}. Segmentasi dapat dilakukan berdasarkan interval waktu, bentuk spasial, atau makna semantik. Pada data MPD aktif, interval pencuplikan tidak selalu rapat sehingga satu perjalanan dapat hanya terdiri dari beberapa titik observasi. Kondisi ini disebut sebagai trajektori sparse.
+
+Dalam penelitian ini, sparsitas data menjadi pertimbangan penting. Literatur mengenai trajektori \textit{low-sampling-rate} menunjukkan bahwa interval pencuplikan yang besar menyebabkan banyak detail gerak hilang dan meningkatkan ketidakpastian rekonstruksi lintasan \cite{zheng2012,bian2020}. Trip dengan jumlah ping sedikit masih dapat digunakan untuk deskripsi agregat, seperti OD zona dan intensitas persimpangan, tetapi kurang memadai untuk rekonstruksi lintasan detail. Oleh karena itu, analisis yang membutuhkan urutan geometris rinci, seperti klasifikasi belokan aktual, disederhanakan menjadi pola OD zona eksploratif dan tidak diperlakukan sebagai observasi belokan yang tervalidasi.
+
+\subsection{Matriks Origin-Destination (OD)}
+
+Matriks OD adalah representasi tabular dari jumlah perjalanan antara pasangan zona asal (\textit{origin}) dan tujuan (\textit{destination}) dalam suatu jaringan transportasi. Alexander et al. (2015) dan Iqbal et al. (2014) menunjukkan bahwa data ponsel dapat digunakan untuk membangun matriks OD pada tingkat agregat, tetapi hasilnya tetap bergantung pada definisi zona, cakupan data, dan prosedur inferensi \cite{alexander2015,iqbal2014}. Dalam penelitian ini, origin dan destination didefinisikan sebagai zona persimpangan pertama dan terakhir yang teramati dalam satu trip, bukan sebagai asal dan tujuan sebenarnya dari seluruh perjalanan pengguna.
+
+\subsection{Indikator Intensitas Persimpangan}
+
+Kepadatan lalu lintas secara teoritis didefinisikan sebagai jumlah kendaraan per satuan panjang jalan pada waktu tertentu. Namun, karena MPD aktif tidak mencakup seluruh kendaraan, penelitian ini menggunakan istilah indikator intensitas persimpangan. Indikator ini dihitung dari jumlah MAID unik dan jumlah ping yang teramati dalam zona persimpangan pada jendela waktu tertentu. Pendekatan tersebut lebih konservatif karena tidak mengklaim volume atau kepadatan lalu lintas aktual.

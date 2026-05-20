@@ -1,0 +1,307 @@
+{
+  "counts": {
+    "bbox": {
+      "rows": 15386869,
+      "maids": 370778,
+      "trips": null
+    },
+    "candidates": {
+      "rows": 839304,
+      "maids": 45691,
+      "trips": null
+    },
+    "collapsed": {
+      "rows": 552413,
+      "maids": 42613,
+      "trips": null
+    },
+    "vehicle": {
+      "rows": 236700,
+      "maids": 8458,
+      "trips": null
+    },
+    "matched": {
+      "rows": 236700,
+      "maids": 8458,
+      "trips": null
+    },
+    "segmented": {
+      "rows": 212407,
+      "maids": 8382,
+      "trips": 38973
+    },
+    "labeled": {
+      "rows": 212407,
+      "maids": 8382,
+      "trips": 38973
+    },
+    "backbone_labeled": {
+      "rows": 212407,
+      "maids": 8382,
+      "trips": 38973
+    },
+    "backbone_trip_summary": {
+      "rows": 38973,
+      "maids": 8382,
+      "trips": 38973
+    }
+  },
+  "match_stats": {
+    "n": 236700,
+    "maids": 8458,
+    "edges": 593,
+    "mean": 5.964497591888467,
+    "p50": 4.98,
+    "p90": 12.44,
+    "p99": 19.18
+  },
+  "trip_stats": {
+    "trips": 38973,
+    "maids": 8382,
+    "pings": 212407,
+    "duration_median": 223.0,
+    "duration_mean": 332.65989274626025,
+    "ping_median": 4.0,
+    "ping_mean": 5.450106483976086,
+    "ping_p75": 6.0,
+    "ping_p90": 11.0,
+    "share_le5": 70.36922997972955,
+    "share_ge10": 12.880712287994253
+  },
+  "zone_total_pings": 86042,
+  "zone_total_maids": 7504,
+  "zone": [
+    {
+      "nearest_intersection": "monjali",
+      "pings": 21758,
+      "maids": 4454
+    },
+    {
+      "nearest_intersection": "condongcatur",
+      "pings": 21422,
+      "maids": 4475
+    },
+    {
+      "nearest_intersection": "upn",
+      "pings": 16882,
+      "maids": 3544
+    },
+    {
+      "nearest_intersection": "kentungan",
+      "pings": 11407,
+      "maids": 3217
+    },
+    {
+      "nearest_intersection": "jombor",
+      "pings": 8147,
+      "maids": 2606
+    },
+    {
+      "nearest_intersection": "kronggahan",
+      "pings": 6426,
+      "maids": 2007
+    }
+  ],
+  "od_total": 28767,
+  "od_diag_total": 16823,
+  "od_diag_share": 58.48020301039385,
+  "top_od_pairs": [
+    [
+      "condongcatur",
+      "upn",
+      956
+    ],
+    [
+      "condongcatur",
+      "monjali",
+      842
+    ],
+    [
+      "monjali",
+      "condongcatur",
+      752
+    ],
+    [
+      "upn",
+      "condongcatur",
+      692
+    ],
+    [
+      "jombor",
+      "monjali",
+      651
+    ],
+    [
+      "kentungan",
+      "monjali",
+      585
+    ],
+    [
+      "kentungan",
+      "condongcatur",
+      553
+    ],
+    [
+      "monjali",
+      "upn",
+      522
+    ]
+  ],
+  "weekday": 19833,
+  "weekend": 8934,
+  "peak": 7121,
+  "offpeak": 21646,
+  "density_rank": [
+    [
+      "condongcatur",
+      20.0,
+      4475,
+      21422
+    ],
+    [
+      "monjali",
+      19.9,
+      4454,
+      21758
+    ],
+    [
+      "upn",
+      15.8,
+      3544,
+      16882
+    ],
+    [
+      "kentungan",
+      14.4,
+      3217,
+      11407
+    ],
+    [
+      "jombor",
+      11.6,
+      2606,
+      8147
+    ],
+    [
+      "kronggahan",
+      9.0,
+      2007,
+      6426
+    ]
+  ],
+  "turn_total_patterns": 26,
+  "turn_by_movement": [
+    {
+      "movement": "u_turn",
+      "count": 16823
+    },
+    {
+      "movement": "arriving_from_west",
+      "count": 6406
+    },
+    {
+      "movement": "departing_east",
+      "count": 6406
+    },
+    {
+      "movement": "departing_west",
+      "count": 5538
+    },
+    {
+      "movement": "arriving_from_east",
+      "count": 5538
+    }
+  ],
+  "month_ping": [
+    {
+      "month": "2021-10",
+      "trips": 198,
+      "maids": 87,
+      "pings": 1646,
+      "median": 3.0,
+      "mean": 8.313131313131313,
+      "le5": 67.17171717171718,
+      "ge10": 18.181818181818183
+    },
+    {
+      "month": "2021-11",
+      "trips": 1135,
+      "maids": 225,
+      "pings": 8644,
+      "median": 4.0,
+      "mean": 7.615859030837004,
+      "le5": 65.81497797356828,
+      "ge10": 18.854625550660792
+    },
+    {
+      "month": "2021-12",
+      "trips": 882,
+      "maids": 157,
+      "pings": 5632,
+      "median": 3.0,
+      "mean": 6.3854875283446715,
+      "le5": 68.59410430839003,
+      "ge10": 15.306122448979592
+    },
+    {
+      "month": "2022-01",
+      "trips": 6006,
+      "maids": 1706,
+      "pings": 28863,
+      "median": 3.0,
+      "mean": 4.805694305694305,
+      "le5": 75.60772560772561,
+      "ge10": 9.54045954045954
+    },
+    {
+      "month": "2022-02",
+      "trips": 14919,
+      "maids": 3680,
+      "pings": 83107,
+      "median": 4.0,
+      "mean": 5.5705476238353775,
+      "le5": 67.85307326228299,
+      "ge10": 13.479455727595683
+    },
+    {
+      "month": "2022-03",
+      "trips": 955,
+      "maids": 148,
+      "pings": 5754,
+      "median": 4.0,
+      "mean": 6.025130890052356,
+      "le5": 69.21465968586388,
+      "ge10": 15.916230366492146
+    },
+    {
+      "month": "2022-04",
+      "trips": 142,
+      "maids": 50,
+      "pings": 535,
+      "median": 3.0,
+      "mean": 3.767605633802817,
+      "le5": 86.61971830985915,
+      "ge10": 4.929577464788732
+    },
+    {
+      "month": "2022-05",
+      "trips": 11552,
+      "maids": 3124,
+      "pings": 59213,
+      "median": 3.0,
+      "mean": 5.125779085872576,
+      "le5": 72.22991689750693,
+      "ge10": 12.119113573407201
+    },
+    {
+      "month": "2022-06",
+      "trips": 3184,
+      "maids": 1335,
+      "pings": 19013,
+      "median": 4.0,
+      "mean": 5.97141959798995,
+      "le5": 67.46231155778895,
+      "ge10": 15.452261306532664
+    }
+  ]
+}
